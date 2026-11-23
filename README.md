@@ -4,9 +4,27 @@ A read-only, scope-aware, multilingual (C, C++, Java and mixed-language) source-
 
 ## Install
 
-The skill consists of `SKILL.md`, `references/`, and `templates/`. **Copy all three** into a folder named `source-to-requirements`; do not copy just `SKILL.md` or nest the folder twice. No Python, Node.js, or build dependencies are needed to run the skill. Git is only needed for the download commands below.
+The skill consists of `SKILL.md`, `references/`, `templates/`, and `LICENSE`. **Copy all four** into a folder named `source-to-requirements`; do not copy just `SKILL.md` or nest the folder twice. The skill itself has no Python, Node.js, or build dependencies; the optional installer below does require Node.js.
 
-### Choose an installation location
+### Recommended: one-command installation (Skills CLI)
+
+Use the third-party [Skills CLI](https://github.com/vercel-labs/skills) to install interactively:
+
+```bash
+npx skills add q1575825411/source-to-requirements
+```
+
+For a user-level installation available across projects:
+
+```bash
+npx skills add q1575825411/source-to-requirements -g
+```
+
+Requires **Node.js 22.20+** for the installer. Select **Codex** or **GitHub Copilot** and confirm the destination reported by the CLI. The skill itself does **not** require Node.js. After installation, verify that `SKILL.md`, `references/`, `templates/`, and `LICENSE` are present in the installed directory. Installer behavior can vary by version; if `LICENSE` is missing, copy it from this repository into the installed skill directory before redistributing it. See the [Skills CLI documentation](https://github.com/vercel-labs/skills#install-a-skill).
+
+### Manual installation (without Node.js)
+
+Choose a destination:
 
 | Agent / scope | Destination |
 |---|---|
@@ -15,7 +33,7 @@ The skill consists of `SKILL.md`, `references/`, and `templates/`. **Copy all th
 | GitHub Copilot in VS Code, user-level (all projects) | `~/.copilot/skills/source-to-requirements/` |
 | GitHub Copilot in VS Code, repository-level (one project) | `<your-project>/.github/skills/source-to-requirements/` |
 
-On Windows, `~` means your user home (for example, `C:\\Users\\<username>`). For a repository-level installation, run the commands from the **target source project's root**, not the skill repository. Choose one location for each agent to avoid conflicting versions.
+On Windows, `~` means your user home (for example, `C:\\Users\\<username>`). For a repository-level installation, run the commands from the **target source project's root**, not the skill repository. Choose one location for each agent to avoid conflicting versions. Manual installation uses Git for downloading the source.
 
 ### Windows PowerShell: install for VS Code Copilot (user-level)
 
@@ -25,9 +43,10 @@ $src = (Resolve-Path .\source-to-requirements).Path
 $dest = Join-Path $HOME ".copilot\skills\source-to-requirements"
 New-Item -ItemType Directory -Force -Path $dest | Out-Null
 Copy-Item "$src\SKILL.md" -Destination $dest -Force
+Copy-Item "$src\LICENSE" -Destination $dest -Force
 Copy-Item "$src\references" -Destination $dest -Recurse -Force
 Copy-Item "$src\templates" -Destination $dest -Recurse -Force
-Test-Path (Join-Path $dest "SKILL.md")
+(Test-Path (Join-Path $dest "SKILL.md")) -and (Test-Path (Join-Path $dest "LICENSE"))
 ```
 
 The final command should return `True`. To install for **Codex CLI** instead, change `$dest` to `Join-Path $HOME ".agents\skills\source-to-requirements"`.
@@ -38,28 +57,18 @@ For **project-level Copilot** installation, open a PowerShell terminal in your t
 $dest = Join-Path (Get-Location) ".github\skills\source-to-requirements"
 ```
 
-Then run the `New-Item` and three `Copy-Item` commands above. For project-level Codex CLI, use `.agents\skills\source-to-requirements` instead.
+Then run the `New-Item` and four `Copy-Item` commands above. For project-level Codex CLI, use `.agents\skills\source-to-requirements` instead.
 
 ### Linux / macOS: install for VS Code Copilot (user-level)
 
 ```bash
 git clone https://github.com/q1575825411/source-to-requirements.git
 mkdir -p "$HOME/.copilot/skills/source-to-requirements"
-cp -R source-to-requirements/SKILL.md source-to-requirements/references source-to-requirements/templates "$HOME/.copilot/skills/source-to-requirements/"
-test -f "$HOME/.copilot/skills/source-to-requirements/SKILL.md" && echo "Skill files installed"
+cp -R source-to-requirements/SKILL.md source-to-requirements/references source-to-requirements/templates source-to-requirements/LICENSE "$HOME/.copilot/skills/source-to-requirements/"
+test -f "$HOME/.copilot/skills/source-to-requirements/SKILL.md" && test -f "$HOME/.copilot/skills/source-to-requirements/LICENSE" && echo "Skill files installed"
 ```
 
 For **Codex CLI**, replace `$HOME/.copilot/skills` with `$HOME/.agents/skills`. For **project-level** installation, replace the destination with `./.github/skills/source-to-requirements` (Copilot) or `./.agents/skills/source-to-requirements` (Codex), while working in the target project's root.
-
-### Alternative: Skills CLI
-
-If you already use the third-party Skills CLI, you can try:
-
-```bash
-npx skills add https://github.com/q1575825411/source-to-requirements
-```
-
-Select the intended agent and scope, and check the installer's reported destination. This is an optional convenience, **not** a dependency of this skill.
 
 ### Verify in VS Code GitHub Copilot
 
@@ -78,7 +87,7 @@ Start a new Codex CLI session in a source checkout and invoke `$source-to-requir
 
 ### Update or uninstall
 
-To update a manual installation, pull the latest changes in the downloaded `source-to-requirements` repository and copy `SKILL.md`, `references/`, and `templates/` into the **same destination** again. Remove obsolete files from a prior installation if the repository structure changes. To uninstall, delete only the installed `source-to-requirements` directory, not its parent `skills` directory.
+To update a manual installation, pull the latest changes in the downloaded `source-to-requirements` repository and copy `SKILL.md`, `references/`, `templates/`, and `LICENSE` into the **same destination** again. Remove obsolete files from a prior installation if the repository structure changes. To uninstall, delete only the installed `source-to-requirements` directory, not its parent `skills` directory.
 
 ## Usage
 

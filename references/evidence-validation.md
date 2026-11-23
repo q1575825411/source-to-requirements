@@ -38,6 +38,12 @@ For every identifiable core outcome, locate the foundational FR ID(s) and answer
 
 Coverage conclusions must say "no unmapped material behavior found within the inspected scope" rather than claiming no material omissions or exhaustive requirements completeness. Independently inspect granularity: split unrelated triggers/outcomes even when implemented by one helper; cross-reference overlapping system/component/interface obligations rather than repeating normative text.
 
+## Cross-result consistency, classification and source-scope gates
+- For related results, verify producer/consumer edges, input population, filtering, aggregation, acceptance gates, and raw/derived/presentation distinctions against source. A list of outcomes without lineage is insufficient when the lineage affects interpretation; do not fabricate relationships for independent results.
+- Compare every FR, NFR, interface constraint, outcome overview and acceptance scenario for duplicate normative rules. Keep one authoritative obligation and link it elsewhere. Distinct quality targets must have independently testable evidence, not merely reword a functional implementation.
+- Verify that final normative FR/NFR IDs are sequential and first appear in document order within their respective normative tables (unless preserving established IDs); cross-references must resolve and no ID may denote two obligations.
+- Audit every evidence path against Git tracked/non-ignored eligibility or an explicitly scoped ignored-file exception. Merely stating "inspected output directory structure" does not demonstrate compliance; when eligibility cannot be established, say so and do not claim the ignored-file gate passed.
+
 ## Extraction coverage reconciliation
 For module scopes with independent components, compare the investigation inventory to the deliverable by component and interaction edge. Check input/validation, modes, state/lifecycle, observable output, failure/exit semantics and material protocol details. Record each as covered by requirement ID, covered by a linked constraint, internal-only with justification, explicitly excluded, or unresolved. A source file marked inspected is not evidence that its component contract was specified. A system-level requirement or call-chain row does not by itself satisfy a missing independent component or interface contract.
 

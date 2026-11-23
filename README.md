@@ -22,6 +22,17 @@ npx skills add q1575825411/source-to-requirements -g
 
 Requires **Node.js 22.20+** for the installer. Select **Codex** or **GitHub Copilot** and confirm the destination reported by the CLI. The skill itself does **not** require Node.js. After installation, verify that `SKILL.md`, `references/`, `templates/`, and `LICENSE` are present in the installed directory. Installer behavior can vary by version; if `LICENSE` is missing, copy it from this repository into the installed skill directory before redistributing it. See the [Skills CLI documentation](https://github.com/vercel-labs/skills#install-a-skill).
 
+### Alternative: GitHub CLI one-command installation
+
+With [GitHub CLI](https://cli.github.com/) version 2.90.0 or later (the `gh skill` feature is in public preview), install directly for a specific agent:
+
+```bash
+gh skill install q1575825411/source-to-requirements source-to-requirements --agent github-copilot --scope user
+gh skill install q1575825411/source-to-requirements source-to-requirements --agent codex --scope user
+```
+
+Run **one** command for your intended agent, not both unless you use both. Replace `--scope user` with `--scope project` for a repository-specific installation. GitHub CLI and the third-party Skills CLI are alternative installers; neither is required to run the skill. Confirm the installed files include `LICENSE` before redistribution.
+
 ### Manual installation (without Node.js)
 
 Choose a destination:
@@ -30,8 +41,8 @@ Choose a destination:
 |---|---|
 | Codex CLI, user-level (all projects) | `~/.agents/skills/source-to-requirements/` |
 | Codex CLI, repository-level (one project) | `<your-project>/.agents/skills/source-to-requirements/` |
-| GitHub Copilot in VS Code, user-level (all projects) | `~/.copilot/skills/source-to-requirements/` |
-| GitHub Copilot in VS Code, repository-level (one project) | `<your-project>/.github/skills/source-to-requirements/` |
+| GitHub Copilot (VS Code and Copilot CLI), user-level (all projects) | `~/.copilot/skills/source-to-requirements/` |
+| GitHub Copilot (VS Code and Copilot CLI), repository-level (one project) | `<your-project>/.github/skills/source-to-requirements/` |
 
 On Windows, `~` means your user home (for example, `C:\\Users\\<username>`). For a repository-level installation, run the commands from the **target source project's root**, not the skill repository. Choose one location for each agent to avoid conflicting versions. Manual installation uses Git for downloading the source.
 
@@ -81,6 +92,17 @@ If the skill is missing, check that the parent folder is named exactly `source-t
 
 Official guide: [VS Code Agent Skills](https://code.visualstudio.com/docs/agent-customization/agent-skills).
 
+### Verify in GitHub Copilot CLI
+
+Launch `copilot` in the source checkout. In the interactive session, run:
+
+```text
+/skills list
+/skills info source-to-requirements
+```
+
+If the skill was installed while the session was running, use `/skills reload` first. To request it explicitly, enter `Use the /source-to-requirements skill to analyze HOME-key interception and cite source evidence.` Copilot CLI can also select skills automatically based on their descriptions. See the [official Copilot CLI skill guide](https://docs.github.com/en/copilot/how-tos/copilot-cli/customize-copilot/add-skills).
+
 ### Verify in Codex CLI
 
 Start a new Codex CLI session in a source checkout and invoke `$source-to-requirements` with a narrow task, or ask Codex to use the skill. If it is not discovered, verify the selected user/project path and restart the session.
@@ -103,6 +125,12 @@ GitHub Copilot Agent (VS Code) example:
 /source-to-requirements
 
 Analyze HOME-key interception in this Android 14 checkout. mode: standard. Trace the end-to-end behavior and cite source evidence.
+```
+
+GitHub Copilot CLI example:
+
+```text
+Use the /source-to-requirements skill to analyze HOME-key interception in this Android 14 checkout. mode: standard. Cite source evidence.
 ```
 
 You can also request the analysis in natural language without naming the skill; automatic selection depends on the agent recognizing the skill and matching its description.

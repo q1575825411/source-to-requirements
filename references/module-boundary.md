@@ -11,6 +11,13 @@ Choose the investigation boundary from the **user's target**, not a universal mo
 
 A module boundary is a navigation aid, **not** a reason to truncate an explicitly requested feature. For example, HOME-key interception may require InputDispatcher, policy, ATMS and Launcher paths if they affect the requested behavior.
 
+## Component contract inventory
+For a module containing multiple independently invocable executables, services, APIs or processes, identify the component contracts **inside the user's declared scope** before consolidating system-level requirements. A component warrants independent requirements when it exposes meaningful inputs, modes/states, outputs, or failure semantics that can be exercised or validated separately. Internal helpers do not automatically qualify.
+
+Record a compact inventory: component, entry/input, modes/state, outputs/errors, external interfaces, and evidence/coverage status. Identify interaction edges (caller/callee, IPC, CLI arguments, messages, result schemas, exit status, timing and failure propagation) only where observable and relevant. Treat an unknown edge as a gap rather than inventing a protocol.
+
+For feature-scoped work, include only component contracts necessary to explain the requested feature; for symbol-scoped work, do not broaden to a complete component specification without user intent. For module-scoped work, do not let the main orchestrator hide separately invocable components in the same module.
+
 ## Module profile
 Record only what can be verified:
 - Module name/root and revision; languages and build targets, if known

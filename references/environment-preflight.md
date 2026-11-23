@@ -23,7 +23,7 @@ git -C "<project-dir>" rev-parse HEAD
 git -C "<project-dir>" ls-files --cached -- "<relative-target-path>"
 git -C "<project-dir>" ls-files --others --exclude-standard -- "<relative-target-path>"
 git -C "<project-dir>" check-ignore -v --no-index -- "<candidate-path>" # diagnostic only; tracked status still takes precedence
-git -C "<project-dir>" status --short -- "<relative-target-path>"git -C "<project-dir>" status --short -- "<relative-target-path>"
+git -C "<project-dir>" status --short -- "<relative-target-path>"
 ```
 
 Adapt to the active shell/platform (e.g. Windows PowerShell uses `Get-Command repo -ErrorAction SilentlyContinue`). Do not run `repo sync`, `repo forall`, a workspace-wide `git status`, installation commands, or any write/mutation operation as part of preflight. Do not assume the `repo` command must be available to analyze an existing Repo checkout.

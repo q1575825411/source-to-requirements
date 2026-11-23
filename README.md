@@ -24,11 +24,11 @@ Requires **Node.js 22.20+** for the installer. Select **Codex** or **GitHub Copi
 
 ### Alternative: GitHub CLI one-command installation
 
-With [GitHub CLI](https://cli.github.com/) version 2.90.0 or later (the `gh skill` feature is in public preview), install directly for a specific agent:
+With [GitHub CLI](https://cli.github.com/) version 2.90.0 or later (the `gh skill` feature is in public preview), install directly for a specific agent. This repository keeps `SKILL.md` at its root, so pass the **exact `SKILL.md` path**, rather than the skill name, to bypass standard `skills/*/SKILL.md` discovery:
 
 ```bash
-gh skill install q1575825411/source-to-requirements source-to-requirements --agent github-copilot --scope user
-gh skill install q1575825411/source-to-requirements source-to-requirements --agent codex --scope user
+gh skill install q1575825411/source-to-requirements SKILL.md --agent github-copilot --scope user
+gh skill install q1575825411/source-to-requirements SKILL.md --agent codex --scope user
 ```
 
 Run **one** command for your intended agent, not both unless you use both. Replace `--scope user` with `--scope project` for a repository-specific installation. GitHub CLI and the third-party Skills CLI are alternative installers; neither is required to run the skill. Confirm the installed files include `LICENSE` before redistribution.

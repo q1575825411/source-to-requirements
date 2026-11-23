@@ -8,8 +8,8 @@ Keep the directory structure intact so relative links from `SKILL.md` to `refere
 
 | Agent / scope | Destination |
 |---|---|
-| Codex CLI, user-level | `$CODEX_HOME/skills/source-to-requirements/` when `CODEX_HOME` is set; otherwise `~/.codex/skills/source-to-requirements/` |
-| Codex / compatible shared Agent Skills location | `~/.agents/skills/source-to-requirements/` or `<repo>/.agents/skills/source-to-requirements/` where supported |
+| Codex CLI, user-level | `~/.agents/skills/source-to-requirements/` |
+| Codex CLI, repository-level | `<repo>/.agents/skills/source-to-requirements/` |
 | GitHub Copilot, repository-level | `<repo>/.github/skills/source-to-requirements/` |
 | GitHub Copilot, user-level | `~/.agents/skills/source-to-requirements/` in supported environments |
 
@@ -41,7 +41,7 @@ Modes: `quick`, `standard` (default), `deep`.
 
 ## Output behavior
 
-- Requirements table: always.
+- Requirements table: required when accessible source evidence supports reconstruction; otherwise provide an investigation plan.
 - Call-chain analysis: when multi-step, cross-service, async, or explicitly requested.
 - Acceptance scenarios: when meaningful branches, errors, permissions, variants, or explicitly requested.
 - Deep mode: add compact branch/state, traceability and scoped coverage matrices.

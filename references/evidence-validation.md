@@ -18,7 +18,8 @@ For each requirement:
 
 - **Evidence source** (optional, per evidence item): `SOURCE` for inspected implementation, `RUNTIME` for an observed trace/execution, `TEST` for an existing test, `DOC` for documentation. Multiple sources may support or conflict on the same claim.
 - **Claim confidence** (existing output field, per requirement): `confirmed`, `inferred`, or `unknown`. Do not add a second set of status labels.
-- **Conflicts**: describe contradictory evidence explicitly in the requirement's notes/gaps; narrow or downgrade confidence until reconciled. A `SOURCE` item can conflict with another `SOURCE` or `RUNTIME` item.
+- **Conflicts**: describe contradictory evidence explicitly in a separate issue/conflict record linked to the affected requirement ID when available; narrow the claim, qualify its build/runtime conditions, or downgrade confidence until reconciled. Do not convert a conflict into a functional requirement or a defect claim without further proof. A `SOURCE` item can conflict with another `SOURCE` or `RUNTIME` item.
+- **Defect hypotheses and inferred intent**: keep separate from evidence-backed implemented behavior. An anomaly or conflict does not establish intent or a defect; state the missing validation.
 
 Static source can establish what code implements without establishing runtime reachability for a particular build. Record conditions and environment when interpreting runtime observations.
 

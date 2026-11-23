@@ -16,6 +16,8 @@ Describe the primary observable result(s), decision(s), state change(s), or arti
 | Outcome / related FR | Meaning and unit | Formation trigger / boundary | Conditions / derivation | Result and failure semantics | Evidence / unknowns |
 |---|---|---|---|---|---|
 
+**Required check when an outcome is identifiable:** the first functional requirements must include a source-linked, testable formation contract defining its semantic unit, operation/decision boundaries, derivation, and success/failure meaning where evidenced. A filled outcome table or field list alone does not satisfy this check. Use `UNK` for unresolved formation semantics; do not infer original stakeholder intent. For multiple independent outcomes, cover each; for no supported primary outcome, omit the table without inventing one.
+
 ## Component and interface scope (when multiple independent contracts exist)
 
 | Component / interface | Entry / inputs | Modes / lifecycle | Outputs / failures | Evidence / coverage |

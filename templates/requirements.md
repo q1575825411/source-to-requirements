@@ -18,6 +18,13 @@ Describe the primary observable result(s), decision(s), state change(s), or arti
 
 **Required check when an outcome is identifiable:** the first functional requirements must include a source-linked, testable formation contract defining its semantic unit, operation/decision boundaries, derivation, and success/failure meaning where evidenced. A filled outcome table or field list alone does not satisfy this check. Use `UNK` for unresolved formation semantics; do not infer original stakeholder intent. For multiple independent outcomes, cover each; for no supported primary outcome, omit the table without inventing one.
 
+## Outcome dependencies / data lineage (when material)
+
+| Producer / related FR | Input population / state | Transformation or gate | Consumer / resulting population | Evidence / unknowns |
+|---|---|---|---|---|
+
+Include only when related outcomes' data lineage materially affects interpretation, validity, or downstream outputs. Reference authoritative FRs rather than duplicating formulas; preserve branches and independent outcomes without forcing a linear pipeline.
+
 ## Component and interface scope (when multiple independent contracts exist)
 
 | Component / interface | Entry / inputs | Modes / lifecycle | Outputs / failures | Evidence / coverage |
@@ -46,6 +53,8 @@ Keep required protocol/compatibility parameters here or link them to their paren
 
 | Related requirement | Parameter / condition | Constraint | Evidence |
 |---|---|---|---|
+
+Use one authoritative home for each normative rule. If a quality property merely restates a functional check (for example, a hash verification or atomic replace), reference the parent FR's acceptance criteria rather than duplicating it here. Only include an NFR with a distinct, independently evidenced and testable quality obligation. Assign IDs after organizing the final requirements; keep normative table first appearances sequential.
 
 ## Nonfunctional requirements (only when evidenced)
 | ID | Quality attribute / condition | Verifiable constraint | Acceptance condition | Evidence | Confidence |

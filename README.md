@@ -1,37 +1,37 @@
 # source-to-requirements
 
-A read-only, scope-aware, multilingual (C, C++, Java and mixed-language) source-to-requirements Agent Skill for Codex CLI and compatible agents, including supported GitHub Copilot Agent Skills environments. No third-party dependencies or executable scripts.
+A read-only Agent Skill that reconstructs verifiable requirements from C, C++, Java, JNI, and mixed-language source. It works with Codex CLI and supported GitHub Copilot environments. The skill has no runtime dependencies or executable scripts.
 
 ## Install
 
-The skill consists of `SKILL.md`, `references/`, `templates/`, and `LICENSE`. **Copy all four** into a folder named `source-to-requirements`; do not copy just `SKILL.md` or nest the folder twice. The skill itself has no Python, Node.js, or build dependencies; the optional installer below does require Node.js.
+Keep `SKILL.md`, `references/`, `templates/`, and `LICENSE` together in a folder named `source-to-requirements`. Do not copy only `SKILL.md` or create a second nested `source-to-requirements` folder.
 
 ### Recommended: one-command installation (Skills CLI)
 
-Use the third-party [Skills CLI](https://github.com/vercel-labs/skills) to install interactively:
+Install interactively with the third-party [Skills CLI](https://github.com/vercel-labs/skills):
 
 ```bash
 npx skills add q1575825411/source-to-requirements
 ```
 
-For a user-level installation available across projects:
+Add `-g` for a user-level installation:
 
 ```bash
 npx skills add q1575825411/source-to-requirements -g
 ```
 
-Requires **Node.js 22.20+** for the installer. Select **Codex** or **GitHub Copilot** and confirm the destination reported by the CLI. The skill itself does **not** require Node.js. After installation, verify that `SKILL.md`, `references/`, `templates/`, and `LICENSE` are present in the installed directory. Installer behavior can vary by version; if `LICENSE` is missing, copy it from this repository into the installed skill directory before redistributing it. See the [Skills CLI documentation](https://github.com/vercel-labs/skills#install-a-skill).
+Skills CLI requires Node.js 22.20+. Select Codex or GitHub Copilot and check the reported destination. The installed directory should contain `SKILL.md`, `references/`, `templates/`, and `LICENSE`. If the installer omits `LICENSE`, copy it from this repository before redistributing the skill. See the [Skills CLI documentation](https://github.com/vercel-labs/skills#install-a-skill).
 
 ### Alternative: GitHub CLI one-command installation
 
-With [GitHub CLI](https://cli.github.com/) version 2.90.0 or later (the `gh skill` feature is in public preview), install directly for a specific agent. This repository keeps `SKILL.md` at its root, so pass the **exact `SKILL.md` path**, rather than the skill name, to bypass standard `skills/*/SKILL.md` discovery:
+[GitHub CLI](https://cli.github.com/) 2.90.0 or later can also install the skill. The `gh skill` command is in public preview. Because this repository keeps `SKILL.md` at its root, pass the exact `SKILL.md` path instead of relying on `skills/*/SKILL.md` discovery:
 
 ```bash
 gh skill install q1575825411/source-to-requirements SKILL.md --agent github-copilot --scope user
 gh skill install q1575825411/source-to-requirements SKILL.md --agent codex --scope user
 ```
 
-Run **one** command for your intended agent, not both unless you use both. Replace `--scope user` with `--scope project` for a repository-specific installation. GitHub CLI and the third-party Skills CLI are alternative installers; neither is required to run the skill. Confirm the installed files include `LICENSE` before redistribution.
+Run the command for the agent you use. Replace `--scope user` with `--scope project` for a repository installation. Check that the installed files include `LICENSE` before redistribution.
 
 ### Manual installation (without Node.js)
 
@@ -44,7 +44,7 @@ Choose a destination:
 | GitHub Copilot (VS Code and Copilot CLI), user-level (all projects) | `~/.copilot/skills/source-to-requirements/` |
 | GitHub Copilot (VS Code and Copilot CLI), repository-level (one project) | `<your-project>/.github/skills/source-to-requirements/` |
 
-On Windows, `~` means your user home (for example, `C:\\Users\\<username>`). For a repository-level installation, run the commands from the **target source project's root**, not the skill repository. Choose one location for each agent to avoid conflicting versions. Manual installation uses Git for downloading the source.
+On Windows, `~` is your user home, for example `C:\\Users\\<username>`. For a repository installation, run the commands from the target source project's root. Use one location per agent to avoid conflicting copies. Manual installation requires Git only to download the repository.
 
 ### Windows PowerShell: install for VS Code Copilot (user-level)
 
@@ -60,15 +60,15 @@ Copy-Item "$src\templates" -Destination $dest -Recurse -Force
 (Test-Path (Join-Path $dest "SKILL.md")) -and (Test-Path (Join-Path $dest "LICENSE"))
 ```
 
-The final command should return `True`. To install for **Codex CLI** instead, change `$dest` to `Join-Path $HOME ".agents\skills\source-to-requirements"`.
+The final command should return `True`. For Codex CLI, set `$dest` to `Join-Path $HOME ".agents\skills\source-to-requirements"`.
 
-For **project-level Copilot** installation, open a PowerShell terminal in your target project's root and set:
+For a project-level Copilot installation, open PowerShell in the target project's root and set:
 
 ```powershell
 $dest = Join-Path (Get-Location) ".github\skills\source-to-requirements"
 ```
 
-Then run the `New-Item` and four `Copy-Item` commands above. For project-level Codex CLI, use `.agents\skills\source-to-requirements` instead.
+Then run the `New-Item` and four `Copy-Item` commands above. For Codex CLI, use `.agents\skills\source-to-requirements`.
 
 ### Linux / macOS: install for VS Code Copilot (user-level)
 
@@ -79,16 +79,16 @@ cp -R source-to-requirements/SKILL.md source-to-requirements/references source-t
 test -f "$HOME/.copilot/skills/source-to-requirements/SKILL.md" && test -f "$HOME/.copilot/skills/source-to-requirements/LICENSE" && echo "Skill files installed"
 ```
 
-For **Codex CLI**, replace `$HOME/.copilot/skills` with `$HOME/.agents/skills`. For **project-level** installation, replace the destination with `./.github/skills/source-to-requirements` (Copilot) or `./.agents/skills/source-to-requirements` (Codex), while working in the target project's root.
+For Codex CLI, replace `$HOME/.copilot/skills` with `$HOME/.agents/skills`. For a project installation, work from the target project's root and use `./.github/skills/source-to-requirements` for Copilot or `./.agents/skills/source-to-requirements` for Codex.
 
 ### Verify in VS Code GitHub Copilot
 
-1. Open the target source project in VS Code and start a **new Copilot Chat Agent session**.
-2. Run **Chat: Open Customizations** from the Command Palette (`Ctrl+Shift+P` on Windows/Linux), then open **Skills**. Look for `source-to-requirements`.
+1. Open the target source project in VS Code and start a new Copilot Chat Agent session.
+2. Run **Chat: Open Customizations** from the Command Palette (`Ctrl+Shift+P` on Windows/Linux), open **Skills**, and look for `source-to-requirements`.
 3. Type `/` in the chat input and select `/source-to-requirements` if listed. Give it a small source-analysis task.
-4. Check the agent activity to confirm it loaded `SKILL.md` and accessed relevant reference files. You can also ask in natural language; automatic selection depends on the task matching the skill description.
+4. Check the agent activity to confirm it loaded `SKILL.md` and the relevant reference files.
 
-If the skill is missing, check that the parent folder is named exactly `source-to-requirements`, `SKILL.md` is immediately inside it, and `chat.useAgentSkills` is enabled (normally on by default). Reload VS Code or start a new agent session after installation. Make sure the selected agent harness supports the chosen location.
+If the skill is missing, confirm that `SKILL.md` is directly inside a folder named `source-to-requirements` and that `chat.useAgentSkills` is enabled. Then reload VS Code or start a new agent session.
 
 Official guide: [VS Code Agent Skills](https://code.visualstudio.com/docs/agent-customization/agent-skills).
 
@@ -101,15 +101,15 @@ Launch `copilot` in the source checkout. In the interactive session, run:
 /skills info source-to-requirements
 ```
 
-If the skill was installed while the session was running, use `/skills reload` first. To request it explicitly, enter `Use the /source-to-requirements skill to analyze HOME-key interception and cite source evidence.` Copilot CLI can also select skills automatically based on their descriptions. See the [official Copilot CLI skill guide](https://docs.github.com/en/copilot/how-tos/copilot-cli/customize-copilot/add-skills).
+If you installed the skill during the current session, run `/skills reload` first. Copilot CLI can select the skill from its description, or you can request it by name: `Use the /source-to-requirements skill to analyze HOME-key interception and cite source evidence.` See the [Copilot CLI skill guide](https://docs.github.com/en/copilot/how-tos/copilot-cli/customize-copilot/add-skills).
 
 ### Verify in Codex CLI
 
-Start a new Codex CLI session in a source checkout and invoke `$source-to-requirements` with a narrow task, or ask Codex to use the skill. If it is not discovered, verify the selected user/project path and restart the session.
+Start a new Codex CLI session in a source checkout and invoke `$source-to-requirements` with a narrow task. If Codex does not find it, check the installation path and restart the session.
 
 ### Update or uninstall
 
-To update a manual installation, pull the latest changes in the downloaded `source-to-requirements` repository and copy `SKILL.md`, `references/`, `templates/`, and `LICENSE` into the **same destination** again. Remove obsolete files from a prior installation if the repository structure changes. To uninstall, delete only the installed `source-to-requirements` directory, not its parent `skills` directory.
+To update a manual installation, pull this repository and copy `SKILL.md`, `references/`, `templates/`, and `LICENSE` to the same destination. Remove files that no longer exist upstream. To uninstall, delete the installed `source-to-requirements` directory, not its parent `skills` directory.
 
 ## Usage
 
@@ -133,23 +133,24 @@ GitHub Copilot CLI example:
 Use the /source-to-requirements skill to analyze HOME-key interception in this Android 14 checkout. mode: standard. Cite source evidence.
 ```
 
-You can also request the analysis in natural language without naming the skill; automatic selection depends on the agent recognizing the skill and matching its description.
+You can also describe the task without naming the skill. Automatic selection depends on the agent and the request.
 
-Modes: `quick`, `standard` (default), `deep`. Start with a module, feature or symbol. A module request follows module contracts; a feature request follows the end-to-end behavior across modules as necessary; a symbol request starts locally. The user-requested behavioral scope always takes precedence over module boundaries. Language-specific investigation is routed through `references/language-analysis.md`; Android guidance is optional.
+Modes are `quick`, `standard` (default), and `deep`. The target can be a module, feature, or symbol. Module requests focus on contracts, feature requests follow behavior across modules, and symbol requests start locally. The requested behavior takes precedence over module boundaries. Language guidance is in `references/language-analysis.md`; Android guidance is optional.
 
 ## Environment preflight
 
-Before source discovery, the skill checks source readability, Git availability, and Repo availability when relevant. It identifies the owning Git project(s), available revisions, and relevant uncommitted changes using targeted read-only commands. Git/Repo are optional: readable plain source files can still be analyzed. It never installs tools, syncs Repo, or modifies the workspace during preflight. See `references/environment-preflight.md`.
+Before reading source, the skill checks file access and, when relevant, Git or Repo metadata. It records the owning project, revision, and relevant uncommitted changes with targeted read-only commands. Plain files remain analyzable without Git or Repo. The preflight never installs tools, syncs Repo, or changes the workspace. See `references/environment-preflight.md`.
 
 ## Output behavior
 
-- Requirements table: required when accessible source evidence supports reconstruction; otherwise provide an investigation plan.
-- Requirements describe verifiable observable behavior, not every internal function or code statement.
-- Validation seeks counterexamples and records unresolved external or cross-language edges.
-- Call-chain analysis: when multi-step, cross-service, async, or explicitly requested.
-- Acceptance scenarios: when meaningful branches, errors, permissions, variants, or explicitly requested.
-- Deep mode: add compact branch/state, traceability and scoped coverage matrices.
-- Default output is one answer. Files are created only on request, and separate deliverables only when explicitly requested.
+- A requirements table when source evidence is available; otherwise, an investigation plan.
+- Observable behavior rather than one requirement per function or statement.
+- Counterexample checks and explicit unresolved edges.
+- A call chain for multi-step, cross-service, or asynchronous flows.
+- Acceptance scenarios for meaningful branches, failures, permissions, or variants.
+- Branch/state, traceability, and scoped coverage matrices in deep mode.
+
+The default output is one answer. The skill creates files or separate deliverables only when requested.
 
 Source files must be accessible in the agent workspace. The skill does not inspect a repository until invoked with access to it, and never modifies analyzed source without separate authorization.
 

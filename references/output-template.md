@@ -14,7 +14,7 @@ For `quick`, a short requirements table with evidence is enough unless complexit
 
 For `standard`, the requirements table is mandatory when source evidence is available; otherwise provide an investigation plan. Add compact call-chain and/or acceptance sections **only if the corresponding conditions above apply**. Do not force all three templates into every response. Combine selected sections in one answer/document. Create separate files only on explicit request for independent deliverables.
 
-For `deep`, include evidence-backed requirements and the three compact matrices below when source is available, limited to the inspected module scope. Add detailed call-chain and acceptance sections when justified. Do not infer completeness from the number of inspected files.
+For `deep`, include evidence-backed requirements and the three compact matrices below when source is available, limited to the inspected user-requested behavioral scope. Add detailed call-chain and acceptance sections when justified. Do not infer completeness from the number of inspected files.
 
 ## Minimum content when source is available
 - Target type, requested behavioral scope, module root(s), languages, revision/build when known, assumptions, and inspected paths

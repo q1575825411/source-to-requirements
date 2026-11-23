@@ -17,7 +17,7 @@ For `standard`, the requirements table is mandatory when source evidence is avai
 For `deep`, include evidence-backed requirements and the three compact matrices below when source is available, limited to the inspected module scope. Add detailed call-chain and acceptance sections when justified. Do not infer completeness from the number of inspected files.
 
 ## Minimum content when source is available
-- Scope, revision/build when known, assumptions, and inspected paths
+- Target type, requested behavioral scope, module root(s), languages, revision/build when known, assumptions, and inspected paths
 - Observed behavior and requirements (ID, trigger/precondition, outcome, evidence, confidence)
 - Important gates/failures when present
 - Unknowns and limitations, with inferred intent clearly separated

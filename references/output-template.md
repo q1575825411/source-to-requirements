@@ -18,11 +18,11 @@ For `deep`, include evidence-backed requirements and the three compact matrices 
 
 ## Minimum content when source is available
 - Target type, requested behavioral scope, module root(s), languages, revision/build when known, assumptions, and inspected paths
-- Observed behavior and requirements (ID, trigger/precondition, outcome, evidence, confidence)
+- Observed behavior and requirements (ID, optional behavior kind, trigger/precondition, outcome, evidence, confidence). Normal, rejection, failure/fallback and compatibility paths belong to the same functional-behavior table when independently observable.
 - Important gates/failures when present
-- Unknowns and limitations, with inferred intent clearly separated
+- Unknowns and limitations, with inferred intent, defect hypotheses, proposed changes, and evidence conflicts kept separate from implemented behavior when relevant
 
-Omit empty optional sections. Cite repository-relative paths with symbol and verified line range; include links only when a known repository URL is available. If no source is supplied, provide an investigation plan, not fabricated requirements.
+Do not require a separate rules/exceptional-behavior table or assign `BR` IDs to conditional branches. Keep one functional-behavior table, grouping branches when they form a single contract. Issue/conflict notes should link affected requirement IDs where available. Omit empty optional sections. Cite repository-relative paths with symbol and verified line range; include links only when a known repository URL is available. If no source is supplied, provide an investigation plan, not fabricated requirements.
 
 ## Deep-mode compact matrices
 

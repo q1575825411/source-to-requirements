@@ -13,6 +13,15 @@ Recover **observable implemented behavior** from source, not imagined original p
 - Mode: `standard` by default; `quick` for a narrow behavior, `deep` for complex state, cross-language boundaries, or high-risk behavior.
 - Version/build: record repository/commit, module root(s), languages, build target and relevant product/variant when available; record Android version only if applicable. Mark unavailable fields unknown.
 - Output: Markdown in conversation by default. Create files only when explicitly requested; do not create three files merely because three templates exist.
+- Output language: follow the user's request language unless explicitly overridden; see the output language policy below.
+
+## Output language policy
+- Default to the language used in the user's request, regardless of the language of source code, templates, or this skill's instructions.
+- An explicit language request or `output_language` setting takes precedence. Supported values: `zh-CN` (Simplified Chinese), `en` (English), and `bilingual` (Chinese-English). If language cannot be determined, default to English.
+- Do not generate bilingual output unless explicitly requested. In bilingual mode, provide aligned Chinese and English descriptions under the **same** requirement IDs, evidence references, and confidence classifications; do not generate duplicate independent requirement sets.
+- Translate explanatory headings, table labels, requirements, scenarios, and summaries as appropriate. Treat the templates as structural skeletons, not mandatory English wording.
+- Preserve identifiers, APIs, symbols, file paths, commands, log messages, literal configuration values, and source quotations exactly as written. Do not translate or alter evidence.
+- Keep the technical meaning and coverage consistent across languages; avoid unnecessary duplication outside explicitly requested bilingual mode.
 
 ## Procedure
 1. **Preflight**: Before source investigation, check target readability, Git availability, and Repo availability when relevant; identify Git/Repo/plain-file workspace and relevant project revisions/dirty paths using only targeted, read-only checks. See [environment preflight](references/environment-preflight.md). Missing Git/Repo must not block file-based analysis; never sync, install, or modify the workspace automatically.

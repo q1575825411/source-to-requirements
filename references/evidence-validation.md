@@ -44,6 +44,10 @@ Coverage conclusions must say "no unmapped material behavior found within the in
 - Verify that final normative FR/NFR IDs are sequential and first appear in document order within their respective normative tables (unless preserving established IDs); cross-references must resolve and no ID may denote two obligations.
 - Audit every evidence path against Git tracked/non-ignored eligibility or an explicitly scoped ignored-file exception. Merely stating "inspected output directory structure" does not demonstrate compliance; when eligibility cannot be established, say so and do not claim the ignored-file gate passed.
 
+## Normative self-containment and failure-scope checks
+- For each material FR/NFR, temporarily hide outcome summaries and other non-normative prose. Verify the obligation still states decisive trigger/conditions, rules, output and applicable failure behavior, allowing references to explicitly normative shared constraints. Repair missing rules at the normative source rather than copying them into multiple overview tables.
+- For divergent failure paths, trace catch/propagation boundaries and verify the requirements distinguish item-level, entity/batch-level and invocation-level effects **only where evidenced**. Confirm that a recorded parse error is not incorrectly described as a fatal exception or vice versa; link acceptance scenarios to each distinct observed outcome.
+
 ## Extraction coverage reconciliation
 For module scopes with independent components, compare the investigation inventory to the deliverable by component and interaction edge. Check input/validation, modes, state/lifecycle, observable output, failure/exit semantics and material protocol details. Record each as covered by requirement ID, covered by a linked constraint, internal-only with justification, explicitly excluded, or unresolved. A source file marked inspected is not evidence that its component contract was specified. A system-level requirement or call-chain row does not by itself satisfy a missing independent component or interface contract.
 

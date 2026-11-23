@@ -1,4 +1,4 @@
-# Reconstructed requirements: <module / feature / symbol>
+# Reconstructed requirements baseline: <module / feature / symbol>
 
 - Target type / name: module | feature | symbol; name:
 - Repository / commit:
@@ -9,13 +9,24 @@
 - Mode / behavioral scope / exclusions:
 - Important assumptions:
 
-## Implemented behavior (evidence-backed)
+## Reconstructed functional requirements (evidence-backed)
 
-Use one table for normal behavior, rejection, error/fallback, and compatibility paths. The behavior-kind label is optional; group branches that form one observable contract. Do not create a `BR` ID solely for a source conditional.
+Organize by feature/scenario rather than by source file or function. Use one table for normal behavior, rejection, error/fallback, and compatibility paths. The behavior-kind label is optional; group branches that form one independently verifiable contract. Do not create a `BR` ID solely for a source conditional.
 
-| ID | Behavior kind (optional) | Trigger / precondition | Observable behavior | Evidence (path:symbol:lines) | Confidence |
+| ID | Feature / scenario | Trigger / precondition | Required observable outcome | Acceptance condition | Evidence (path:symbol:lines) | Confidence |
+|---|---|---|---|---|---|---|
+| FR-001 | | | | | | confirmed |
+
+## Technical and configuration constraints (when relevant)
+
+Keep required protocol/compatibility parameters here or link them to their parent FR. Build flags, dependency lists and implementation mechanisms are supporting context, not automatically NFRs.
+
+| Related requirement | Parameter / condition | Constraint | Evidence |
+|---|---|---|---|
+
+## Nonfunctional requirements (only when evidenced)
+| ID | Quality attribute / condition | Verifiable constraint | Acceptance condition | Evidence | Confidence |
 |---|---|---|---|---|---|
-| FR-001 | normal / rejection / error-fallback / compatibility | | | | confirmed |
 
 ## Inferred intent (only if supported as a hypothesis; not confirmed)
 | Hypothesis | Rationale | Evidence | Validation needed |

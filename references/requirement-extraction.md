@@ -19,6 +19,13 @@ Convert to verifiable statements: `When [trigger], if [conditions], the system [
 - A source-observed behavior is a candidate reconstructed requirement, not proof that stakeholders intended or approved it. When suspicious, state the observed contract separately from its defect hypothesis and desired change.
 - Distinguish **known behavior** from **unknown intent**: a verified fixed path or guard is not `UNK` merely because its rationale is unclear; put the rationale question in `UNK` and link the observed behavior.
 
+## Multi-level requirement reconstruction
+- **System level**: describe the end-to-end outcome and lifecycle without absorbing all independently observable component obligations.
+- **Component level**: preserve each in-scope independently exercisable component's significant input validation, operating modes, behavior/state, output and error/exit semantics. Consolidate related branches within that component, but do not discard its contract merely because an orchestrator invokes it.
+- **Interface level**: specify material cross-component contracts: invocation arguments, messages/handshakes, ordering/timeouts, output schema, exit/failure propagation, and compatibility conditions when supported. A call-chain narrative alone is not an interface contract.
+- Cross-reference shared requirements instead of duplicating full statements. Do not require a fixed number of component sections or separate documents; choose structure based on observable contract boundaries, not file layout.
+- Before delivery, map each material investigated behavior to a requirement, interface/technical constraint, explicit scope exclusion, or unresolved issue. A behavior supported by source but omitted from requirements must have an explicit reason (e.g. internal mechanism only).
+
 ## Requirement quality gate
 Before delivery, check each material requirement:
 1. **Clarity**: actor, trigger, preconditions, and outcome are unambiguous.

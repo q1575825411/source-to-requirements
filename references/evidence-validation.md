@@ -27,6 +27,11 @@ Static source can establish what code implements without establishing runtime re
 
 Evidence is context-dependent: runtime traces demonstrate observed behavior only in their recorded conditions; source demonstrates reachable logic only when build/dispatch gates are established; tests and documentation corroborate but can diverge. Do not impose a universal evidence hierarchy.
 
+## Extraction coverage reconciliation
+For module scopes with independent components, compare the investigation inventory to the deliverable by component and interaction edge. Check input/validation, modes, state/lifecycle, observable output, failure/exit semantics and material protocol details. Record each as covered by requirement ID, covered by a linked constraint, internal-only with justification, explicitly excluded, or unresolved. A source file marked inspected is not evidence that its component contract was specified. A system-level requirement or call-chain row does not by itself satisfy a missing independent component or interface contract.
+
+For feature/symbol scopes, reconcile only behavior material to the requested boundary. Keep this audit compact and do not generate placeholder requirements for unobserved behavior.
+
 Review the final requirement statements for independent testability, behavioral rather than incidental implementation wording, and explicit treatment of known behavior versus unknown intent. Technical constraints that affect a required measurement protocol or compatibility contract must not be lost through abstraction.
 
 Traceability matrix columns: requirement ID, statement, condition, evidence location, confidence, validation scenario, gaps.

@@ -51,6 +51,10 @@ After final grouping and section ordering, assign sequential IDs to normative FR
 - Cross-reference shared requirements instead of duplicating full statements. Do not require a fixed number of component sections or separate documents; choose structure based on observable contract boundaries, not file layout.
 - Before delivery, map each material investigated behavior to a requirement, interface/technical constraint, explicit scope exclusion, or unresolved issue. A behavior supported by source but omitted from requirements must have an explicit reason (e.g. internal mechanism only).
 
+## Two lightweight precision gates
+- **Self-contained normative obligation**: Read each FR/NFR without its explanatory overview. Can a reviewer identify the decisive condition, rule, observable outcome and material failure behavior, using only that requirement plus explicitly linked *normative* constraints? If not, move the missing rule into the authoritative FR/NFR or linked normative constraint, then reduce the overview to a summary. Avoid duplicating a shared formula across multiple FRs.
+- **Failure propagation scope**: For each materially different error path, trace where it is caught or propagated and identify its observable blast radius: individual input/event, current entity/batch, or whole invocation (including exit status when evidenced). Distinguish retained invalid records, skipped items, retries and fatal exceptions. Do not invent a recovery or exit code; only distinguish levels actually supported by the inspected source.
+
 ## Requirement quality gate
 Before delivery, check each material requirement:
 1. **Core meaning**: where identifiable, the primary outcome and its formation/validity semantics are independently understandable before supporting orchestration; otherwise the uncertainty is explicit.

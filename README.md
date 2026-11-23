@@ -11,9 +11,9 @@ Keep the directory structure intact so relative links from `SKILL.md` to `refere
 | Codex CLI, user-level | `~/.agents/skills/source-to-requirements/` |
 | Codex CLI, repository-level | `<repo>/.agents/skills/source-to-requirements/` |
 | GitHub Copilot, repository-level | `<repo>/.github/skills/source-to-requirements/` |
-| GitHub Copilot, user-level | `~/.agents/skills/source-to-requirements/` in supported environments |
+| GitHub Copilot (VS Code), user-level | `~/.copilot/skills/source-to-requirements/` |
 
-Agent discovery paths vary by product and version. Verify the path supported by your installed Codex/Copilot version and restart or reload the agent session if necessary. Avoid duplicate installs with divergent versions.
+These are the recommended locations for the listed agents. Skill discovery can vary by product and version; verify that your agent recognizes the installed skill, and reload the agent session if necessary. Avoid duplicate installs with divergent versions.
 
 You may also try the Skills CLI:
 
@@ -31,11 +31,15 @@ Codex CLI example:
 $source-to-requirements Analyze HOME-key interception in this Android 14 checkout. mode: standard. Cite source evidence.
 ```
 
-GitHub Copilot Agent example:
+GitHub Copilot Agent (VS Code) example:
 
 ```text
-Use the source-to-requirements skill to reconstruct HOME-key interception behavior. mode: standard. Cite source evidence.
+/source-to-requirements
+
+Analyze HOME-key interception in this Android 14 checkout. mode: standard. Trace the end-to-end behavior and cite source evidence.
 ```
+
+You can also request the analysis in natural language without naming the skill; automatic selection depends on the agent recognizing the skill and matching its description.
 
 Modes: `quick`, `standard` (default), `deep`. Start with a module, feature or symbol. A module request follows module contracts; a feature request follows the end-to-end behavior across modules as necessary; a symbol request starts locally. The user-requested behavioral scope always takes precedence over module boundaries. Language-specific investigation is routed through `references/language-analysis.md`; Android guidance is optional.
 

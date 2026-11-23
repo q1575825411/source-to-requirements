@@ -54,3 +54,7 @@ Before source discovery, the skill checks source readability, Git availability, 
 - Default output is one answer. Files are created only on request, and separate deliverables only when explicitly requested.
 
 Source files must be accessible in the agent workspace. The skill does not inspect a repository until invoked with access to it, and never modifies analyzed source without separate authorization.
+
+## License
+
+Unless otherwise noted, this project is licensed under the [MIT License](LICENSE).

@@ -10,17 +10,19 @@
 - Important assumptions:
 
 ## Implemented behavior (evidence-backed)
-| ID | Trigger / precondition | Observable behavior | Evidence (path:symbol:lines) | Confidence |
-|---|---|---|---|---|
-| FR-001 | | | | confirmed |
 
-## Rules and exceptional behavior
-| ID | Condition | Decision / fallback | Evidence | Confidence |
-|---|---|---|---|---|
-| BR-001 | | | | |
+Use one table for normal behavior, rejection, error/fallback, and compatibility paths. The behavior-kind label is optional; group branches that form one observable contract. Do not create a `BR` ID solely for a source conditional.
 
-## Inferred intent (not confirmed)
+| ID | Behavior kind (optional) | Trigger / precondition | Observable behavior | Evidence (path:symbol:lines) | Confidence |
+|---|---|---|---|---|---|
+| FR-001 | normal / rejection / error-fallback / compatibility | | | | confirmed |
+
+## Inferred intent (only if supported as a hypothesis; not confirmed)
 | Hypothesis | Rationale | Evidence | Validation needed |
+|---|---|---|---|
+
+## Defect hypotheses and evidence conflicts (only if found)
+| Type | Related requirement ID | Observation / conflicting evidence | Validation needed |
 |---|---|---|---|
 
 ## Unknowns and uncovered scope

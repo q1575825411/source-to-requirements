@@ -21,6 +21,11 @@ When source evidence identifies one or more primary observable outcomes, define 
 
 **Non-optional when an outcome is identifiable:** include a short, evidence-backed foundational requirement or linked group of FRs explaining its formation and interpretation **before** the component capability and orchestration requirements. A field/schema table alone cannot satisfy this obligation. The optional overview table is only a navigation aid, not a replacement for foundational FRs. If no primary outcome is supportable, continue with scoped component/feature contracts and state why if material.
 
+## Dependency clarity and single-source requirements
+For systems with materially connected results, briefly show the evidenced transformations between input populations, core outcomes and downstream consumers (for example raw → filtered → aggregated), with validity/acceptance gates where relevant. Use a compact table or prose only if needed; do not mandate diagrams or invent linear dependencies. The foundational FR(s) remain the authoritative specification; an outcome overview is explanatory and should reference, not duplicate, their rules.
+
+Do not restate the same normative rule independently as both FR and NFR or in interface/overview tables. NFRs need independently evidenced, verifiable quality constraints. Assign IDs after organizing the final normative requirements so their first appearance follows the document order; update all cross-references. A non-normative outcome summary may refer forward to an FR. Preserve externally stable IDs only for revisions to an existing baseline.
+
 ## Deliverable priority
 1. **Requirements baseline**: feature/scenario-oriented requirements, observable outcomes, relevant failure/variant constraints, and acceptance conditions. This is the main body, not a function inventory.
 2. **Supporting traceability**: source locations, confidence, build/revision assumptions, and optional call-chain/state details necessary to justify the baseline.

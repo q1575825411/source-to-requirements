@@ -14,6 +14,9 @@ For each requirement:
 - What observation or alternate path would disprove this claim, and was that path inspected?
 - Is the cited path reachable in the module/build under analysis?
 
+## Evidence path eligibility
+For each cited source file, confirm it belongs to the allowed scoped candidate set for its owning Git project: tracked, untracked non-ignored, or an explicitly named ignored-file exception. A direct file read, stack trace, call chain, test log, or generated report does not override Git exclusion. If a claim depends on an ignored untracked file without an authorized exception, remove that evidence and re-evaluate the claim or mark it unresolved. Record exceptions in the provenance/limitations. For plain-file scopes, mark Git ignore filtering unavailable rather than claiming compliance.
+
 ## Evidence provenance and confidence
 
 - **Evidence source** (optional, per evidence item): `SOURCE` for inspected implementation, `RUNTIME` for an observed trace/execution, `TEST` for an existing test, `DOC` for documentation. Multiple sources may support or conflict on the same claim.
@@ -35,7 +38,13 @@ For every identifiable core outcome, locate the foundational FR ID(s) and answer
 
 Coverage conclusions must say "no unmapped material behavior found within the inspected scope" rather than claiming no material omissions or exhaustive requirements completeness. Independently inspect granularity: split unrelated triggers/outcomes even when implemented by one helper; cross-reference overlapping system/component/interface obligations rather than repeating normative text.
 
-## Extraction coverage reconciliation## Extraction coverage reconciliation
+## Cross-result consistency, classification and source-scope gates
+- For related results, verify producer/consumer edges, input population, filtering, aggregation, acceptance gates, and raw/derived/presentation distinctions against source. A list of outcomes without lineage is insufficient when the lineage affects interpretation; do not fabricate relationships for independent results.
+- Compare every FR, NFR, interface constraint, outcome overview and acceptance scenario for duplicate normative rules. Keep one authoritative obligation and link it elsewhere. Distinct quality targets must have independently testable evidence, not merely reword a functional implementation.
+- Verify that final normative FR/NFR IDs are sequential and first appear in document order within their respective normative tables (unless preserving established IDs); cross-references must resolve and no ID may denote two obligations.
+- Audit every evidence path against Git tracked/non-ignored eligibility or an explicitly scoped ignored-file exception. Merely stating "inspected output directory structure" does not demonstrate compliance; when eligibility cannot be established, say so and do not claim the ignored-file gate passed.
+
+## Extraction coverage reconciliation
 For module scopes with independent components, compare the investigation inventory to the deliverable by component and interaction edge. Check input/validation, modes, state/lifecycle, observable output, failure/exit semantics and material protocol details. Record each as covered by requirement ID, covered by a linked constraint, internal-only with justification, explicitly excluded, or unresolved. A source file marked inspected is not evidence that its component contract was specified. A system-level requirement or call-chain row does not by itself satisfy a missing independent component or interface contract.
 
 For feature/symbol scopes, reconcile only behavior material to the requested boundary. Keep this audit compact and do not generate placeholder requirements for unobserved behavior.

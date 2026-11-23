@@ -10,6 +10,9 @@
 8. Compare branches/versions only when both source trees or trustworthy diffs are available.
 9. Before finalizing, search for competing registrations, overrides, alternate branches and failure paths that could falsify each proposed behavior. Stop when material behaviors and alternatives are evidenced or explicitly unresolved.
 
+## Source-discovery and trace filter
+Build a scoped candidate set from tracked paths and untracked non-ignored paths using Git commands in the owning worktree. Do not assume `rg`'s default ignore behavior is identical to Git eligibility: `rg` can hide tracked files matching ignore patterns, while a direct path read or an unrestricted walker can include ignored untracked files. Filter search results and direct follow-up reads against the eligible set. Use `git grep` for tracked content and targeted reads/searches for eligible untracked content; keep paths limited to the requested scope. Do not use `rg --no-ignore`, `rg -uuu`, or equivalent ignore-bypassing scans by default. A user explicitly naming an ignored file authorizes only that file as an exception; record it and never silently follow its ignored neighbors. For plain files or unavailable Git, follow scope and note the limitation.
+
 Suggested commands (adapt to repository):
 ```bash
 git -C '<project-dir>' rev-parse HEAD

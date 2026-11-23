@@ -1,11 +1,15 @@
-# Reconstructed requirements: <feature>
+# Reconstructed requirements: <module / feature / symbol>
 
+- Target type / name: module | feature | symbol; name:
 - Repository / commit:
-- Android version / product variant (if applicable):
-- Mode / scope / inspected paths:
+- Module root(s) / inspected paths:
+- Languages (C / C++ / Java / JNI / other, as applicable):
+- Build target / configuration (if known):
+- Product / Android version (if applicable):
+- Mode / behavioral scope / exclusions:
 - Important assumptions:
 
-## Confirmed implemented behavior
+## Implemented behavior (evidence-backed)
 | ID | Trigger / precondition | Observable behavior | Evidence (path:symbol:lines) | Confidence |
 |---|---|---|---|---|
 | FR-001 | | | | confirmed |

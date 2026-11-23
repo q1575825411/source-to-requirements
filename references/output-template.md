@@ -16,6 +16,9 @@ For `standard`, the requirements table with verifiable acceptance conditions is 
 
 For `deep`, include evidence-backed requirements and the three compact matrices below when source is available, limited to the inspected user-requested behavioral scope. Add detailed call-chain and acceptance sections when justified. Do not infer completeness from the number of inspected files.
 
+## Outcome-first organization
+When source evidence identifies one or more primary observable outcomes, define their formation and interpretation contracts early in the requirements baseline, before extensive orchestration, lifecycle, storage, and reporting detail. Describe the semantic unit, trigger/boundary, relevant conditions, derivation/decision, result and failure/validity meaning as supported. Connect supporting capabilities to these foundational requirements without replacing independently testable component/interface contracts. This is an ordering and completeness principle, **not** a mandatory new section, ID category, or single business goal. If the primary outcome or part of its meaning cannot be established from inspected evidence, state the limitation and do not manufacture it.
+
 ## Deliverable priority
 1. **Requirements baseline**: feature/scenario-oriented requirements, observable outcomes, relevant failure/variant constraints, and acceptance conditions. This is the main body, not a function inventory.
 2. **Supporting traceability**: source locations, confidence, build/revision assumptions, and optional call-chain/state details necessary to justify the baseline.
@@ -30,6 +33,7 @@ Before finalizing, reconcile investigated behavior against requirements/constrai
 
 ## Minimum content when source is available
 - Target type, requested behavioral scope, module root(s), languages, revision/build when known, assumptions, and inspected paths
+- Core observable outcome(s) and formation/interpretation contracts when identifiable, with explicit unknown semantics where evidence is insufficient
 - Reconstructed requirements (ID, optional behavior kind, trigger/precondition, observable obligation, acceptance condition, evidence, confidence), grouped by feature/scenario. Normal, rejection, failure/fallback and compatibility paths belong to the same functional-behavior table when independently observable.
 - Important gates/failures and relevant technical constraints when present; explicit acceptance criteria for material requirements
 - Unknowns and limitations, with inferred intent, defect hypotheses, proposed changes, and evidence conflicts kept separate from implemented behavior when relevant

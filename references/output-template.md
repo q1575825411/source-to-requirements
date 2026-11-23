@@ -1,6 +1,6 @@
 # Output routing and format
 
-Default to a single Markdown answer in conversation. Do not write files unless requested. A mode controls **investigation depth**, not a mandatory count of documents or sections.
+Default to a single Markdown **reconstructed requirements specification** in conversation. Do not write files unless requested. The specification is the deliverable; source analysis, call chains and evidence classification substantiate it. A mode controls **investigation depth**, not a mandatory count of documents or sections.
 
 ## Template routing
 
@@ -10,16 +10,23 @@ Default to a single Markdown answer in conversation. Do not write files unless r
 | [Call chain](../templates/call-chain.md) | Cross-service/IPC/async flows, multi-step state changes, ambiguous dispatch, or explicit request | Conditional |
 | [Acceptance scenarios](../templates/test-scenarios.md) | Meaningful branches, permissions, failure/recovery paths, configuration variants, coverage questions, or explicit request | Conditional |
 
-For `quick`, a short requirements table with evidence is enough unless complexity warrants more.
+For `quick`, a short scenario-oriented requirements table with evidence and verifiable outcomes is enough unless complexity warrants more.
 
-For `standard`, the requirements table is mandatory when source evidence is available; otherwise provide an investigation plan. Add compact call-chain and/or acceptance sections **only if the corresponding conditions above apply**. Do not force all three templates into every response. Combine selected sections in one answer/document. Create separate files only on explicit request for independent deliverables.
+For `standard`, the requirements table with verifiable acceptance conditions is mandatory when source evidence is available; otherwise provide an investigation plan. Add compact call-chain and/or acceptance sections **only if the corresponding conditions above apply**. Do not force all three templates into every response. Combine selected sections in one answer/document. Create separate files only on explicit request for independent deliverables.
 
 For `deep`, include evidence-backed requirements and the three compact matrices below when source is available, limited to the inspected user-requested behavioral scope. Add detailed call-chain and acceptance sections when justified. Do not infer completeness from the number of inspected files.
 
+## Deliverable priority
+1. **Requirements baseline**: feature/scenario-oriented requirements, observable outcomes, relevant failure/variant constraints, and acceptance conditions. This is the main body, not a function inventory.
+2. **Supporting traceability**: source locations, confidence, build/revision assumptions, and optional call-chain/state details necessary to justify the baseline.
+3. **Unresolved decisions**: unknown intent, possible defects, evidence conflicts, and unvisited scope, clearly separated from requirements.
+
+Preserve essential technical contracts (for example, a mandatory measurement protocol) while moving incidental implementation details, compiler flags, and library lists to a concise technical context section when relevant. Do not turn these facts into `NFR` without a justified quality constraint. Use compact parameter tables rather than repetitive top-level FRs when appropriate. Omit empty optional sections.
+
 ## Minimum content when source is available
 - Target type, requested behavioral scope, module root(s), languages, revision/build when known, assumptions, and inspected paths
-- Observed behavior and requirements (ID, optional behavior kind, trigger/precondition, outcome, evidence, confidence). Normal, rejection, failure/fallback and compatibility paths belong to the same functional-behavior table when independently observable.
-- Important gates/failures when present
+- Reconstructed requirements (ID, optional behavior kind, trigger/precondition, observable obligation, acceptance condition, evidence, confidence), grouped by feature/scenario. Normal, rejection, failure/fallback and compatibility paths belong to the same functional-behavior table when independently observable.
+- Important gates/failures and relevant technical constraints when present; explicit acceptance criteria for material requirements
 - Unknowns and limitations, with inferred intent, defect hypotheses, proposed changes, and evidence conflicts kept separate from implemented behavior when relevant
 
 Do not require a separate rules/exceptional-behavior table or assign `BR` IDs to conditional branches. Keep one functional-behavior table, grouping branches when they form a single contract. Issue/conflict notes should link affected requirement IDs where available. Omit empty optional sections. Cite repository-relative paths with symbol and verified line range; include links only when a known repository URL is available. If no source is supplied, provide an investigation plan, not fabricated requirements.

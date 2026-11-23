@@ -137,6 +137,20 @@ You can also describe the task without naming the skill. Automatic selection dep
 
 Modes are `quick`, `standard` (default), and `deep`. The target can be a module, feature, or symbol. Module requests focus on contracts, feature requests follow behavior across modules, and symbol requests start locally. The requested behavior takes precedence over module boundaries. Language guidance is in `references/language-analysis.md`; Android guidance is optional.
 
+## Output language
+
+By default, the skill writes in the language of your request (Chinese requests produce Chinese output; English requests produce English output). Specify `output_language: zh-CN`, `output_language: en`, or `output_language: bilingual` to override it. Bilingual output is opt-in and aligns both languages under the same requirement IDs and evidence. Code identifiers and source evidence remain unchanged.
+
+Example:
+
+```text
+分析 Android 14 HOME 键拦截流程。mode: standard; output_language: zh-CN
+```
+
+```text
+Analyze HOME-key interception. mode: standard; output_language: bilingual
+```
+
 ## Environment preflight
 
 Before reading source, the skill checks file access and, when relevant, Git or Repo metadata. It records the owning project, revision, and relevant uncommitted changes with targeted read-only commands. Plain files remain analyzable without Git or Repo. The preflight never installs tools, syncs Repo, or changes the workspace. See `references/environment-preflight.md`.

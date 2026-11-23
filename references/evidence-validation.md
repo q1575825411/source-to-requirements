@@ -14,10 +14,16 @@ For each requirement:
 - What observation or alternate path would disprove this claim, and was that path inspected?
 - Is the cited path reachable in the module/build under analysis?
 
-Evidence labels: `SOURCE` (static implementation), `RUNTIME` (observed execution with environment recorded), `INFERRED` (interpretation), `UNKNOWN` (insufficient evidence), `CONTRADICTED` (conflicting evidence). These labels describe evidence type/status; retain the output's `confirmed / inferred / unknown` confidence field separately. A source path can confirm static behavior without proving runtime reachability. Conflicts must be surfaced, not silently resolved.
+## Evidence provenance and confidence
+
+- **Evidence source** (optional, per evidence item): `SOURCE` for inspected implementation, `RUNTIME` for an observed trace/execution, `TEST` for an existing test, `DOC` for documentation. Multiple sources may support or conflict on the same claim.
+- **Claim confidence** (existing output field, per requirement): `confirmed`, `inferred`, or `unknown`. Do not add a second set of status labels.
+- **Conflicts**: describe contradictory evidence explicitly in the requirement's notes/gaps; narrow or downgrade confidence until reconciled. A `SOURCE` item can conflict with another `SOURCE` or `RUNTIME` item.
+
+Static source can establish what code implements without establishing runtime reachability for a particular build. Record conditions and environment when interpreting runtime observations.
 
 Evidence is context-dependent: runtime traces demonstrate observed behavior only in their recorded conditions; source demonstrates reachable logic only when build/dispatch gates are established; tests and documentation corroborate but can diverge. Do not impose a universal evidence hierarchy.
 
 Traceability matrix columns: requirement ID, statement, condition, evidence location, confidence, validation scenario, gaps.
 
-For absence claims, record exactly which module paths and build variants were searched. State a stop reason and unvisited paths; do not equate scoped inspection with exhaustive proof. Mark uncertain results explicitly.
+For absence claims, record exactly which relevant paths, modules and build variants were searched. State a stop reason and unvisited paths; do not equate scoped inspection with exhaustive proof. Mark uncertain results explicitly.

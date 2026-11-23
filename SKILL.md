@@ -10,7 +10,7 @@ Recover **observable implemented behavior** from source, not imagined original p
 
 ## Inputs and defaults
 - Target: a module, feature, symbol, or path. **User-specified scope takes precedence**: a module request uses a module boundary; a feature request follows its end-to-end observable behavior across modules as needed; a symbol request starts locally and expands only as necessary. If unspecified, ask for one target rather than scanning an entire monorepo.
-- Mode: `standard` by default; `quick` for a narrow behavior, `deep` for complex state, cross-language boundaries, or high-risk module behavior.
+- Mode: `standard` by default; `quick` for a narrow behavior, `deep` for complex state, cross-language boundaries, or high-risk behavior.
 - Version/build: record repository/commit, module root(s), languages, build target and relevant product/variant when available; record Android version only if applicable. Mark unavailable fields unknown.
 - Output: Markdown in conversation by default. Create files only when explicitly requested; do not create three files merely because three templates exist.
 

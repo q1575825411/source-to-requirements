@@ -9,6 +9,13 @@
 - Mode / behavioral scope / exclusions:
 - Important assumptions:
 
+## Core outcome / formation contract (when identifiable)
+
+Describe the primary observable result(s), decision(s), state change(s), or artifact(s) within the requested scope. Define what each represents, its inputs and triggering conditions, the operation/decision boundary, derivation and result/validity/failure semantics **only as supported by evidence**. Put independently testable obligations in the functional requirements table below and cross-reference their FR IDs; do not create duplicate normative statements or assume a single outcome. If none can be established, state the gap or omit this optional section for a narrow scope.
+
+| Outcome / related FR | Meaning and unit | Formation trigger / boundary | Conditions / derivation | Result and failure semantics | Evidence / unknowns |
+|---|---|---|---|---|---|
+
 ## Component and interface scope (when multiple independent contracts exist)
 
 | Component / interface | Entry / inputs | Modes / lifecycle | Outputs / failures | Evidence / coverage |

@@ -27,6 +27,9 @@ Static source can establish what code implements without establishing runtime re
 
 Evidence is context-dependent: runtime traces demonstrate observed behavior only in their recorded conditions; source demonstrates reachable logic only when build/dispatch gates are established; tests and documentation corroborate but can diverge. Do not impose a universal evidence hierarchy.
 
+## Core outcome verification
+Where the scope supports a primary observable outcome, check that its contract explicitly defines the result's semantic unit, formation trigger/boundary, conditions, derived meaning and failure/validity distinctions to the extent evidenced. Check that orchestrators, storage, reporting, and interface descriptions do not merely mention the result while omitting how it is formed. Trace dependent capabilities back to the core contract where useful. Challenge inferred formulas, thresholds, measurement boundaries and acceptance rules against actual code; unresolved semantics must remain unknown, not silently invented. Do not force a primary outcome for scopes without one.
+
 ## Extraction coverage reconciliation
 For module scopes with independent components, compare the investigation inventory to the deliverable by component and interaction edge. Check input/validation, modes, state/lifecycle, observable output, failure/exit semantics and material protocol details. Record each as covered by requirement ID, covered by a linked constraint, internal-only with justification, explicitly excluded, or unresolved. A source file marked inspected is not evidence that its component contract was specified. A system-level requirement or call-chain row does not by itself satisfy a missing independent component or interface contract.
 

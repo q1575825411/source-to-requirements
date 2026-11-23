@@ -19,6 +19,16 @@ Convert to verifiable statements: `When [trigger], if [conditions], the system [
 - A source-observed behavior is a candidate reconstructed requirement, not proof that stakeholders intended or approved it. When suspicious, state the observed contract separately from its defect hypothesis and desired change.
 - Distinguish **known behavior** from **unknown intent**: a verified fixed path or guard is not `UNK` merely because its rationale is unclear; put the rationale question in `UNK` and link the observed behavior.
 
+## Core outcome and formation-contract reconstruction
+Before consolidating a capability inventory into requirements, ask within the requested scope:
+1. What observable result, decision, state transition, or artifact is the system/feature principally producing? There may be multiple; for a narrow symbol or generic library, a primary outcome may be indeterminate.
+2. What is the semantic unit of that result, its inputs and conditions, and what precisely initiates and completes its formation? Identify the boundary of the operation/decision, not merely the presence of output fields.
+3. How is the result derived or classified, including relevant algorithms/formulas, timing/ordering, units, validity, errors, and distinction between attempted, produced, and accepted results **when supported by evidence**?
+4. Which observed capabilities directly produce the result, establish its conditions, coordinate repetition, or preserve/report it? Express those as supporting or constraining contracts rather than substituting them for the foundational contract.
+5. Can a reader understand how the key outcome arises without first reading orchestration, persistence, or implementation walkthroughs? If not, revise the requirements order or fill a substantiated contract gap.
+
+Treat this as **goal-oriented reverse inference from implemented behavior**, not proof of original business intent. Do not assert an original stakeholder objective, SLA, success threshold, quality guarantee, or result-validity rule merely because code has a field, constant, or comment. Mark unsupported semantics unresolved. Preserve multiple equally important outcomes when appropriate; do not force a single central requirement for utility libraries, narrowly scoped symbols, or systems where the evidence does not identify one. The foundational contract can be a small group of existing FRs, not a mandatory new ID series or a boilerplate section.
+
 ## Multi-level requirement reconstruction
 - **System level**: describe the end-to-end outcome and lifecycle without absorbing all independently observable component obligations.
 - **Component level**: preserve each in-scope independently exercisable component's significant input validation, operating modes, behavior/state, output and error/exit semantics. Consolidate related branches within that component, but do not discard its contract merely because an orchestrator invokes it.
@@ -28,11 +38,12 @@ Convert to verifiable statements: `When [trigger], if [conditions], the system [
 
 ## Requirement quality gate
 Before delivery, check each material requirement:
-1. **Clarity**: actor, trigger, preconditions, and outcome are unambiguous.
-2. **Verifiability**: an observer or test can determine pass/fail; add acceptance conditions or a linked proposed scenario where useful.
-3. **Boundary coverage**: relevant rejection, timeout, failure, recovery and variant paths are addressed or explicitly scoped out.
-4. **Consistency**: no contradictory requirements or unsupported normative claims; conflicts are recorded separately.
-5. **Traceability**: evidence location, revision/build context, and confidence are stated.
+1. **Core meaning**: where identifiable, the primary outcome and its formation/validity semantics are independently understandable before supporting orchestration; otherwise the uncertainty is explicit.
+2. **Clarity**: actor, trigger, preconditions, and outcome are unambiguous.
+3. **Verifiability**: an observer or test can determine pass/fail; add acceptance conditions or a linked proposed scenario where useful.
+4. **Boundary coverage**: relevant rejection, timeout, failure, recovery and variant paths are addressed or explicitly scoped out.
+5. **Consistency**: no contradictory requirements or unsupported normative claims; conflicts are recorded separately.
+6. **Traceability**: evidence location, revision/build context, and confidence are stated.
 If a criterion cannot be established, narrow the statement or record the gap instead of inventing a requirement.
 
 ## Requirement granularity

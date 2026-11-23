@@ -23,6 +23,11 @@ For `deep`, include evidence-backed requirements and the three compact matrices 
 
 Preserve essential technical contracts (for example, a mandatory measurement protocol) while moving incidental implementation details, compiler flags, and library lists to a concise technical context section when relevant. Do not turn these facts into `NFR` without a justified quality constraint. Use compact parameter tables rather than repetitive top-level FRs when appropriate. Omit empty optional sections.
 
+## Multi-component delivery and coverage
+When the requested scope contains multiple independently observable components, organize the baseline with a concise system overview, component-level requirements for each material component, and a clearly identifiable inter-component interface contract. Sections may be grouped in one document; avoid duplicate normative statements by linking requirement IDs. Do not replace a component contract with an end-to-end description, and do not treat call-chain documentation as the sole interface specification.
+
+Before finalizing, reconcile investigated behavior against requirements/constraints/exclusions/unknowns. Include a compact component-and-interface coverage summary when omission risk is material; it is a quality check, not a requirement to produce large matrices for single-component or narrow symbol work.
+
 ## Minimum content when source is available
 - Target type, requested behavioral scope, module root(s), languages, revision/build when known, assumptions, and inspected paths
 - Reconstructed requirements (ID, optional behavior kind, trigger/precondition, observable obligation, acceptance condition, evidence, confidence), grouped by feature/scenario. Normal, rejection, failure/fallback and compatibility paths belong to the same functional-behavior table when independently observable.

@@ -162,11 +162,15 @@ Before reading source, the skill checks file access and, when relevant, Git or R
 - Counterexample checks and explicit unresolved edges.
 - A call chain for multi-step, cross-service, or asynchronous flows.
 - Acceptance scenarios for meaningful branches, failures, permissions, or variants.
-- Branch/state, traceability, and scoped coverage matrices in deep mode.
+- Internal branch/state, traceability, and scoped coverage checks in deep mode; publish supporting views only when they add material information or serve a concrete review task.
 
 The default output is one answer. The skill creates files or separate deliverables only when requested.
 
 Source files must be accessible in the agent workspace. The skill does not inspect a repository until invoked with access to it, and never modifies analyzed source without separate authorization.
+
+## Development and quality review
+
+See [independent requirements quality review](evals/README.md) and [roadmap](TODO.md). Review accuracy and conformance against source, without requiring a canonical answer or aggregate score. These development documents are not runtime dependencies.
 
 ## License
 

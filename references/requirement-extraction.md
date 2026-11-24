@@ -66,6 +66,8 @@ Before delivery, check each material requirement:
 If a criterion cannot be established, narrow the statement or record the gap instead of inventing a requirement.
 
 ## Requirement granularity
+- Before final IDs, inspect grouped operations for independently observable input/output/error contracts. Shared domain nouns or a common dispatcher do not justify grouping. Split materially distinct contracts, or give each explicit stable child identifier (e.g. FR-001.a), trigger/input, result, applicable error semantics, evidence and acceptance criterion. Parent IDs remain sequential; child references must resolve. Keep variants of one obligation together; do not split by function count.
+- An acceptance criterion is a pass/fail oracle, not a test activity: specify the relevant input/condition and observable expected value, state, output, rejection or invariant. Replace vague 'verify correctness' or 'test error handling' with source-backed expectations; link exact normative constraints when shared. If a decisive expectation is unknown, mark that gap instead of inventing a value or error code.
 - Prefer one requirement per independently observable behavior or decision outcome, not per function, line, or internal helper. A source-level decision branch is not automatically a business rule.
 - Group multiple implementation branches when they implement one external contract; split when triggers, outcomes or independently testable conditions differ. Keep repetitive configuration ranges in a subordinate constraints table if they do not warrant separate top-level requirements.
 - Verify counters, thresholds and retry/reset semantics across their lifecycle before promoting an implementation constant to a behavioral requirement.

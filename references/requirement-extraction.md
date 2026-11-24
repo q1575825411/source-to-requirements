@@ -44,7 +44,7 @@ First extract candidate contracts without IDs. Classify an **FR** as an independ
 
 After final grouping and section ordering, assign sequential IDs to normative FRs and NFRs, then update all references, outcome summaries, interface links, scenarios and coverage tables. Do not number by discovery order. In a document with an early outcome overview, references to later FR IDs are fine, but the **normative FR table's first appearances** should be ordered consistently. Preserve pre-existing IDs only when updating an established externally referenced baseline, and state that exception.
 
-## Multi-level requirement reconstruction## Multi-level requirement reconstruction
+## Multi-level requirement reconstruction
 - **System level**: describe the end-to-end outcome and lifecycle without absorbing all independently observable component obligations.
 - **Component level**: preserve each in-scope independently exercisable component's significant input validation, operating modes, behavior/state, output and error/exit semantics. Consolidate related branches within that component, but do not discard its contract merely because an orchestrator invokes it.
 - **Interface level**: specify material cross-component contracts: invocation arguments, messages/handshakes, ordering/timeouts, output schema, exit/failure propagation, and compatibility conditions when supported. A call-chain narrative alone is not an interface contract.

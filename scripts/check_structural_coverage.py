@@ -10,7 +10,7 @@ def validate(record):
     counts = Counter()
     if not isinstance(record, dict):
         return ["record must be an object"], counts
-    if type(record.get("schema")) is not int or record["schema"] != 2:
+    if type(record.get("schema")) is not int or record["schema"] != 3:
         errors.append("unsupported schema")
     def nonempty(value):
         return isinstance(value, str) and bool(value.strip())
@@ -98,6 +98,41 @@ def validate(record):
             errors.append(prefix + ": inspected without evidence")
         if status in ("excluded", "blocked") and not nonempty(unit.get("reason")):
             errors.append(prefix + ": missing reason")
+        dispositions = unit.get("dispositions", [])
+        if not isinstance(dispositions, list):
+            errors.append(prefix + ": invalid dispositions")
+            continue
+        disposed = set()
+        for item in dispositions:
+            if not isinstance(item, dict):
+                errors.append(prefix + ": invalid disposition")
+                continue
+            members = item.get("structure_ids")
+            if not strings(members) or not members:
+                errors.append(prefix + ": invalid disposition structures")
+                continue
+            if (len(set(members)) != len(members) or disposed.intersection(members)
+                    or not strings(refs) or set(members) - set(refs)):
+                errors.append(prefix + ": duplicate or foreign disposition structure")
+            disposed.update(members)
+            state = item.get("status")
+            facts = item.get("fact_ids")
+            ev = item.get("evidence")
+            reason = item.get("reason")
+            if not strings(facts) or not strings(ev):
+                errors.append(prefix + ": invalid disposition evidence or fact IDs")
+                continue
+            if state == "inspected":
+                if not ev or (not facts and not nonempty(reason)):
+                    errors.append(prefix + ": inspected structure without evidence or findings/reason")
+            elif state == "excluded":
+                if facts or not nonempty(reason):
+                    errors.append(prefix + ": invalid structure exclusion")
+            else:
+                errors.append(prefix + ": invalid disposition status")
+        if status == "inspected" and strings(refs) and disposed != set(refs):
+            errors.append(prefix + ": incomplete structure dispositions")
+
     for path in sorted(candidate_set - assigned):
         errors.append("unassigned candidate: " + path)
     for sid in sorted(set(structure_paths) - assigned_structures):

@@ -24,6 +24,7 @@ Reverse-engineer a **usable, evidence-backed requirements baseline** from existi
 - Keep the technical meaning and coverage consistent across languages; avoid unnecessary duplication outside explicitly requested bilingual mode.
 
 ## Resource loading policy
+- Accuracy, material behavior coverage and verifiability take precedence over execution efficiency and output compactness. Optimize acquisition and duplicate expression, not the amount of material information retained.
 - Reuse the active SKILL.md when its complete instructions are already available. Do not preload all references or templates, or reread guidance that remains available and sufficient.
 - Load required guidance before the decisions it governs, not necessarily at a fixed stage. Load conditional guidance only when its applicability is established. Apply all relevant rules and quality gates regardless of loading strategy.
 

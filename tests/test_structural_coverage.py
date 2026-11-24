@@ -13,8 +13,8 @@ class CoverageTests(unittest.TestCase):
         return {"schema": 2, "scope": "module", "enumeration": "git",
                 "candidates": ["a.c", "README"],
                 "structures": [
-                    {"id":"S-1","path":"a.c","kind":"symbol","locator":"entry","description":"entry point"},
-                    {"id":"S-2","path":"README","kind":"section","locator":"whole","description":"notes"}],
+                    {"id":"S-1","path":"a.c","kind":"symbol","locator":"entry"},
+                    {"id":"S-2","path":"README","kind":"section","locator":"whole"}],
                 "units": [
                     {"id": "U-1", "scope": "entry", "paths": ["a.c"], "structure_ids": ["S-1"],
                      "status": "inspected", "evidence": ["a.c:1-20"], "reason": ""},
@@ -56,7 +56,7 @@ class CoverageTests(unittest.TestCase):
     def test_unassigned_internal_structure(self):
         record = self.record()
         record["structures"].append({"id":"S-3","path":"a.c","kind":"symbol",
-                                     "locator":"other","description":"another contract"})
+                                     "locator":"other"})
         self.assertIn("unassigned structure: S-3", module.validate(record)[0])
 
     def test_file_only_schema_rejected(self):

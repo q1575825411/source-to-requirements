@@ -1,7 +1,6 @@
 # Requirement extraction
 
 ## Behavioral record
-During investigation, retain source-linked material behavioral facts at the level of decisive conditions, rules, observable results and failure effects, not just capability names. Reuse the existing working record; no separate file or exhaustive per-line inventory is required.
 - Actor/caller
 - Trigger and preconditions
 - Configuration/build/permission guards
@@ -45,12 +44,11 @@ First extract candidate contracts without IDs. Classify an **FR** as an independ
 
 After final grouping and section ordering, assign sequential IDs to normative FRs and NFRs, then update all references, outcome summaries, interface links, scenarios and coverage tables. Do not number by discovery order. In a document with an early outcome overview, references to later FR IDs are fine, but the **normative FR table's first appearances** should be ordered consistently. Preserve pre-existing IDs only when updating an established externally referenced baseline, and state that exception.
 
-## Multi-level requirement reconstruction
+## Multi-level requirement reconstruction## Multi-level requirement reconstruction
 - **System level**: describe the end-to-end outcome and lifecycle without absorbing all independently observable component obligations.
 - **Component level**: preserve each in-scope independently exercisable component's significant input validation, operating modes, behavior/state, output and error/exit semantics. Consolidate related branches within that component, but do not discard its contract merely because an orchestrator invokes it.
 - **Interface level**: specify material cross-component contracts: invocation arguments, messages/handshakes, ordering/timeouts, output schema, exit/failure propagation, and compatibility conditions when supported. A call-chain narrative alone is not an interface contract.
 - Cross-reference shared requirements instead of duplicating full statements. Do not require a fixed number of component sections or separate documents; choose structure based on observable contract boundaries, not file layout.
-- Consolidation must preserve each material fact, including independently observable supporting behavior and result-defining formulas, thresholds, populations, units and edge cases. Naming a capability or listing output fields does not preserve its governing rules. Keep those rules in the authoritative requirement or explicitly linked normative constraints; split or identify subcontracts when grouping obscures independent acceptance conditions.
 - Before delivery, map each material investigated behavior to a requirement, interface/technical constraint, explicit scope exclusion, or unresolved issue. A behavior supported by source but omitted from requirements must have an explicit reason (e.g. internal mechanism only).
 
 ## Two lightweight precision gates

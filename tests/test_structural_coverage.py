@@ -10,12 +10,15 @@ spec.loader.exec_module(module)
 
 class CoverageTests(unittest.TestCase):
     def record(self):
-        return {"schema": 1, "scope": "module", "enumeration": "git",
+        return {"schema": 2, "scope": "module", "enumeration": "git",
                 "candidates": ["a.c", "README"],
+                "structures": [
+                    {"id":"S-1","path":"a.c","kind":"symbol","locator":"entry","description":"entry point"},
+                    {"id":"S-2","path":"README","kind":"section","locator":"whole","description":"notes"}],
                 "units": [
-                    {"id": "U-1", "scope": "entry", "paths": ["a.c"],
+                    {"id": "U-1", "scope": "entry", "paths": ["a.c"], "structure_ids": ["S-1"],
                      "status": "inspected", "evidence": ["a.c:1-20"], "reason": ""},
-                    {"id": "U-2", "scope": "notes", "paths": ["README"],
+                    {"id": "U-2", "scope": "notes", "paths": ["README"], "structure_ids": ["S-2"],
                      "status": "excluded", "evidence": [], "reason": "unrelated notes"}]}
 
     def test_valid(self):
@@ -49,6 +52,28 @@ class CoverageTests(unittest.TestCase):
         record = self.record()
         record["units"][0]["status"] = []
         self.assertTrue(module.validate(record)[0])
+
+    def test_unassigned_internal_structure(self):
+        record = self.record()
+        record["structures"].append({"id":"S-3","path":"a.c","kind":"symbol",
+                                     "locator":"other","description":"another contract"})
+        self.assertIn("unassigned structure: S-3", module.validate(record)[0])
+
+    def test_file_only_schema_rejected(self):
+        record = self.record()
+        record["schema"] = 1
+        del record["structures"]
+        self.assertTrue(module.validate(record)[0])
+
+    def test_unknown_structure(self):
+        record = self.record()
+        record["units"][0]["structure_ids"] = ["missing"]
+        self.assertTrue(module.validate(record)[0])
+
+    def test_path_mismatch(self):
+        record = self.record()
+        record["units"][0]["structure_ids"] = ["S-2"]
+        self.assertIn("U-1: paths do not match structures", module.validate(record)[0])
 
     def test_duplicate_id(self):
         record = self.record()

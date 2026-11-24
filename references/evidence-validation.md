@@ -2,11 +2,6 @@
 
 For each candidate requirement, seek both supporting and **challenging** evidence. Attempt to falsify the proposed statement by looking for alternate dispatch targets, guards, error paths, overrides, build variants and conflicting tests. Revise, narrow or mark a claim unresolved if a counterexample is found.
 
-## Evidence reuse and targeted verification
-Reuse source-linked facts, inspected ranges and verified locations from investigation when they remain available, current and sufficient for the claim. Validation still requires checking supporting and challenging evidence; prior inspection satisfies a check only when it actually covers the relevant conditions and alternatives. Search or reread targeted ranges for missing branches, unresolved counterexamples, conflicts, changed source, truncated output or insufficient precision. Never treat a prior conclusion or search hit as a substitute for necessary implementation evidence.
-
-For delivery checks, reuse the current draft and return focused diagnostics or relevant excerpts when inspecting generated files; read additional sections or the full document when needed to verify cross-section consistency or coverage. Do not skip any existing quality gate to reduce context.
-
 For each requirement:
 - Is there an executable production path proving the behavior?
 - Have guards, early returns, exceptions and failure branches been inspected?
@@ -62,8 +57,6 @@ Coverage conclusions must say "no unmapped material behavior found within the in
 Before omitting or merging a supporting view, apply the counterfactual check in the output routing guide. Verify that every material obligation, acceptance oracle, evidence location, dependency and known gap remains accessible in the final deliverable. A repeated view may be retained in reference-based form for a concrete cross-contract review task; do not use subjective value scores or brevity to justify information loss. Reconcile coverage after consolidation.
 
 ## Extraction coverage reconciliation
-Before delivery, reconcile the existing source-linked behavioral and outcome-formation records against the actual normative statements at fact level, not merely by matching capability names or IDs. Check that decisive conditions, calculations, observable side effects and failure distinctions survive grouping. Restore missing material facts or explicitly justify exclusion; mark genuinely unresolved evidence as a gap. Do not use brevity, execution cost or a prior report as the coverage criterion.
-
 For module scopes with independent components, compare the investigation inventory to the deliverable by component and interaction edge. Check input/validation, modes, state/lifecycle, observable output, failure/exit semantics and material protocol details. Record each as covered by requirement ID, covered by a linked constraint, internal-only with justification, explicitly excluded, or unresolved. A source file marked inspected is not evidence that its component contract was specified. A system-level requirement or call-chain row does not by itself satisfy a missing independent component or interface contract.
 
 For feature/symbol scopes, reconcile only behavior material to the requested boundary. Keep this audit compact and do not generate placeholder requirements for unobserved behavior.

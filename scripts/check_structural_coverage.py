@@ -10,7 +10,7 @@ def validate(record):
     counts = Counter()
     if not isinstance(record, dict):
         return ["record must be an object"], counts
-    if type(record.get("schema")) is not int or record["schema"] != 1:
+    if type(record.get("schema")) is not int or record["schema"] != 2:
         errors.append("unsupported schema")
     def nonempty(value):
         return isinstance(value, str) and bool(value.strip())
@@ -27,6 +27,27 @@ def validate(record):
         errors.append("duplicate candidate paths")
     candidate_set = set(candidates)
     assigned = set()
+    structures = record.get("structures")
+    structure_paths = {}
+    locators = set()
+    if not isinstance(structures, list):
+        errors.append("structures must be a list")
+        structures = []
+    for item in structures:
+        if not isinstance(item, dict) or not all(nonempty(item.get(k)) for k in ("id", "path", "kind", "locator", "description")):
+            errors.append("invalid structure")
+            continue
+        sid, path = item["id"], item["path"]
+        key = (path, item["locator"])
+        if sid in structure_paths or key in locators:
+            errors.append("duplicate structure: " + sid)
+        structure_paths[sid] = path
+        locators.add(key)
+        if path not in candidate_set:
+            errors.append("structure outside candidate list: " + sid)
+    for path in sorted(candidate_set - set(structure_paths.values())):
+        errors.append("candidate without internal structure: " + path)
+    assigned_structures = set()
     ids = set()
     units = record.get("units")
     if not isinstance(units, list):
@@ -52,6 +73,17 @@ def validate(record):
             assigned.update(paths)
             if set(paths) - candidate_set:
                 errors.append(prefix + ": paths outside candidate list")
+        refs = unit.get("structure_ids")
+        if not strings(refs) or not refs:
+            errors.append(prefix + ": missing or invalid structure_ids")
+        else:
+            assigned_structures.update(refs)
+            if len(set(refs)) != len(refs):
+                errors.append(prefix + ": duplicate structure references")
+            if set(refs) - set(structure_paths):
+                errors.append(prefix + ": unknown structure reference")
+            if strings(paths) and set(paths) != {structure_paths[x] for x in refs if x in structure_paths}:
+                errors.append(prefix + ": paths do not match structures")
         status = unit.get("status")
         if not isinstance(status, str) or status not in (
             "pending", "in_progress", "inspected", "excluded", "blocked"
@@ -68,6 +100,8 @@ def validate(record):
             errors.append(prefix + ": missing reason")
     for path in sorted(candidate_set - assigned):
         errors.append("unassigned candidate: " + path)
+    for sid in sorted(set(structure_paths) - assigned_structures):
+        errors.append("unassigned structure: " + sid)
     return errors, counts
 
 

@@ -10,14 +10,15 @@ spec.loader.exec_module(module)
 
 class CoverageTests(unittest.TestCase):
     def record(self):
-        return {"schema": 2, "scope": "module", "enumeration": "git",
+        return {"schema": 3, "scope": "module", "enumeration": "git",
                 "candidates": ["a.c", "README"],
                 "structures": [
                     {"id":"S-1","path":"a.c","kind":"symbol","locator":"entry"},
                     {"id":"S-2","path":"README","kind":"section","locator":"whole"}],
                 "units": [
                     {"id": "U-1", "scope": "entry", "paths": ["a.c"], "structure_ids": ["S-1"],
-                     "status": "inspected", "evidence": ["a.c:1-20"], "reason": ""},
+                     "status": "inspected", "evidence": ["a.c:1-20"], "reason": "",
+                     "dispositions": [{"structure_ids":["S-1"],"status":"inspected","evidence":["a.c:1-20"],"fact_ids":["B-1"],"reason":""}]},
                     {"id": "U-2", "scope": "notes", "paths": ["README"], "structure_ids": ["S-2"],
                      "status": "excluded", "evidence": [], "reason": "unrelated notes"}]}
 
@@ -74,6 +75,24 @@ class CoverageTests(unittest.TestCase):
         record = self.record()
         record["units"][0]["structure_ids"] = ["S-2"]
         self.assertIn("U-1: paths do not match structures", module.validate(record)[0])
+
+    def test_partial_unit_cannot_close(self):
+        record = self.record()
+        record["structures"].append({"id":"S-3","path":"a.c","kind":"symbol","locator":"other"})
+        record["units"][0]["structure_ids"].append("S-3")
+        self.assertIn("U-1: incomplete structure dispositions", module.validate(record)[0])
+
+    def test_no_behavior_requires_reason(self):
+        record = self.record()
+        record["units"][0]["dispositions"][0]["fact_ids"] = []
+        self.assertTrue(module.validate(record)[0])
+        record["units"][0]["dispositions"][0]["reason"] = "Shared declaration only"
+        self.assertFalse(module.validate(record)[0])
+
+    def test_duplicate_disposition(self):
+        record = self.record()
+        record["units"][0]["dispositions"] *= 2
+        self.assertTrue(module.validate(record)[0])
 
     def test_duplicate_id(self):
         record = self.record()

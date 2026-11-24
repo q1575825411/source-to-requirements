@@ -7,19 +7,29 @@ After preflight and scope definition, enumerate eligible paths in each relevant 
 
 Create a run-local JSON record outside the analyzed source tree and skill installation, using a writable temporary directory or authorized output location. Do not overwrite another run's record. If no writable location is available, keep an explicit in-context record and report that persistent validation is unavailable. Do not modify source, install dependencies, or require Python to continue analysis.
 
-Schema (version 1):
+Schema (version 2; version 1 is not sufficient for closure):
 ```json
 {
-  "schema": 1,
+  "schema": 2,
   "scope": "requested boundary and mode",
   "enumeration": "commands, roots, revisions and limitations",
   "candidates": ["project-relative-or-qualified/path"],
+  "structures": [
+    {"id":"S-001","path":"project-relative-or-qualified/path","kind":"symbol","locator":"qualified symbol or verified range","description":"independently discovered source structure"}
+  ],
   "units": [
-    {"id":"U-001","scope":"logical component or symbol range","paths":["project-relative-or-qualified/path"],"status":"pending","evidence":[],"reason":""}
+    {"id":"U-001","scope":"logical component or symbol range","paths":["project-relative-or-qualified/path"],"structure_ids":["S-001"],"status":"pending","evidence":[],"reason":""}
   ]
 }
 ```
 Use unique project-qualified paths for multiple projects. Each enumerated candidate must be assigned to at least one unit, including explicitly excluded non-source or unrelated files. Group related paths when useful; split large or heterogeneous files into logical units as investigation reveals distinct contracts. Units may overlap. Keep the original candidate set and append newly discovered eligible dependencies; do not remove candidates to make closure pass. A missing/deleted/unreadable candidate is blocked, not silently dropped.
+
+## Internal structure discovery (mandatory before unit closure)
+For each candidate, inventory its internal source structures independently of the eventual requirements and investigation units. Use available language-aware symbol listing, parser, editor index, or targeted declaration/configuration searches plus source inspection; record the method and limitations in enumeration. Include functions/methods, entry points, declarations, state/configuration tables, top-level executable logic and other material non-symbol regions as applicable. For formats without symbols, enumerate logical sections/keys/records or verified source regions. Do not require a particular parser, language, line-count threshold, or one unit per function. Record inaccessible or opaque candidates as explicit structures assigned to blocked units; trivial/non-behavioral files may have a single structure with a justified exclusion.
+
+Each structure has a stable ID, candidate path, kind, locator and description. Preserve the independently discovered list; reconcile against the discovery output before closure, including unassigned symbols and residual regions. Append newly discovered structures rather than deleting inconvenient entries. A whole-file placeholder is not a substitute for discoverable internal structures. If discovery cannot establish internal structure, record the limitation and keep affected units blocked rather than claiming inspection.
+
+Group related structures into units with a coherent investigation objective. Distinct independently observable contracts or materially different decision, transformation, lifecycle, configuration or failure mechanisms must have separate units, even within one file. Shared helpers may belong to multiple units. Every structure must map to at least one unit, and each unit's paths must exactly match the paths of its referenced structures. For a multi-contract file, explicitly check that the unit partition separates those contracts before marking any unit inspected. Do not use a single catch-all unit with a list of unrelated functions. Structural inventory is not a behavior ledger: no requirement IDs or extracted behavioral rules are required here.
 
 ## Investigation lifecycle
 - pending: identified, not yet investigated.
@@ -31,8 +41,8 @@ Use unique project-qualified paths for multiple projects. Each enumerated candid
 Persist updates during investigation, after each logical unit or batch, and before context compaction if possible. Reopen units when new branches, configurations, dependencies or unresolved questions emerge. Record newly discovered units before following them. Do not use the inventory to cap source reads or replace existing call-chain, outcome, evidence or counterexample checks.
 
 ## Closure
-Before delivery reconcile the candidate list with the original enumeration and subsequent expansions. Run the bundled validator with an available Python 3 interpreter:
+Before delivery reconcile the candidate list and internal structure list with the original discovery outputs and subsequent expansions. Check unit coherence and distinct contract partitioning; the validator cannot judge semantic grouping. Run the bundled validator with an available Python 3 interpreter:
 `python <skill-root>/scripts/check_structural_coverage.py <run-record.json>`
-Use the actual interpreter and path for the platform. If unavailable, manually check the same invariants and explicitly state that the script was not run. Repair structural errors; continue investigating pending/in-progress units when possible. If evidence or execution limits prevent completion, retain their status or mark blocked with a concrete reason and deliver partial coverage, never a false completion claim.
+Resolve the actual installed skill root from the loaded SKILL.md location, not the analyzed repository or current directory. Check the bundled script exists there; if missing, report incomplete skill packaging and use the manual fallback without claiming automatic validation. Use the actual interpreter and path for the platform. If unavailable, manually check the same invariants and explicitly state that the script was not run. Repair structural errors; continue investigating pending/in-progress units when possible. If evidence or execution limits prevent completion, retain their status or mark blocked with a concrete reason and deliver partial coverage, never a false completion claim.
 
-The validator checks record structure and status accounting only; it cannot prove enumeration completeness, source reachability, semantic understanding or requirement coverage. Report concise counts by status, material exclusions, blocked/unvisited units and limitations in the existing provenance/coverage section. Do not publish the full inventory unless requested. Preserve existing quality gates and output routing. No historical requirements baseline, behavior ledger or behavior-to-requirement mapping is introduced in this phase.
+The validator checks record structure and status accounting only; it cannot prove enumeration completeness, source reachability, semantic understanding or requirement coverage. Report candidate, structure and unit counts separately, counts by status, material exclusions, blocked/unvisited units and limitations in the existing provenance/coverage section. Do not publish the full inventory unless requested. Preserve existing quality gates and output routing. No historical requirements baseline, behavior ledger or behavior-to-requirement mapping is introduced in this phase.

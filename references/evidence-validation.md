@@ -2,6 +2,11 @@
 
 For each candidate requirement, seek both supporting and **challenging** evidence. Attempt to falsify the proposed statement by looking for alternate dispatch targets, guards, error paths, overrides, build variants and conflicting tests. Revise, narrow or mark a claim unresolved if a counterexample is found.
 
+## Evidence reuse and targeted verification
+Reuse source-linked facts, inspected ranges and verified locations from investigation when they remain available, current and sufficient for the claim. Validation still requires checking supporting and challenging evidence; prior inspection satisfies a check only when it actually covers the relevant conditions and alternatives. Search or reread targeted ranges for missing branches, unresolved counterexamples, conflicts, changed source, truncated output or insufficient precision. Never treat a prior conclusion or search hit as a substitute for necessary implementation evidence.
+
+For delivery checks, reuse the current draft and return focused diagnostics or relevant excerpts when inspecting generated files; read additional sections or the full document when needed to verify cross-section consistency or coverage. Do not skip any existing quality gate to reduce context.
+
 For each requirement:
 - Is there an executable production path proving the behavior?
 - Have guards, early returns, exceptions and failure branches been inspected?

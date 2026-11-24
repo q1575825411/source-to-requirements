@@ -23,6 +23,13 @@ Reverse-engineer a **usable, evidence-backed requirements baseline** from existi
 - Preserve identifiers, APIs, symbols, file paths, commands, log messages, literal configuration values, and source quotations exactly as written. Do not translate or alter evidence.
 - Keep the technical meaning and coverage consistent across languages; avoid unnecessary duplication outside explicitly requested bilingual mode.
 
+## Resource loading discipline
+- Treat this `SKILL.md` as the control plane. Load linked reference files and templates just in time at the step where their rules are needed rather than preloading every skill resource at startup.
+- For normal source-backed runs, preserve the existing procedure order: use environment preflight before investigation, code-investigation guidance while tracing, requirement-extraction guidance before/during abstraction, evidence-validation guidance for review, and output-template guidance before delivery. This changes loading time only, not which quality gates apply.
+- Load conditional resources only when applicable: language guidance for relevant language/cross-language analysis, Android guidance for Android-specific behavior, module-boundary guidance when defining or expanding a boundary, and call-chain/test templates only under their routing conditions.
+- Reuse a resource already read in the current run. Re-read only when needed to recover missing/truncated content or verify a rule no longer available with sufficient precision.
+- This policy applies only to skill-resource loading. Never reduce source investigation depth, omit material behavior, skip counterexample searches, weaken evidence precision, or remove acceptance/coverage checks merely to save tokens or tool calls.
+
 ## Procedure
 1. **Preflight**: Before source investigation, check target readability, Git availability, and Repo availability when relevant; identify Git/Repo/plain-file workspace and relevant project revisions/dirty paths using only targeted, read-only checks. See [environment preflight](references/environment-preflight.md). Missing Git/Repo must not block file-based analysis; never sync, install, or modify the workspace automatically.
 2. **Scope**: Classify the request as module, feature or symbol analysis. State the user-requested behavioral boundary, relevant module root(s), repository/commit, languages, build target, interfaces, assumptions and exclusions. Use [scope and module boundary guide](references/module-boundary.md). Define observable entry and outcome.

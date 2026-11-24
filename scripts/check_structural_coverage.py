@@ -34,7 +34,7 @@ def validate(record):
         errors.append("structures must be a list")
         structures = []
     for item in structures:
-        if not isinstance(item, dict) or not all(nonempty(item.get(k)) for k in ("id", "path", "kind", "locator", "description")):
+        if not isinstance(item, dict) or not all(nonempty(item.get(k)) for k in ("id", "path", "kind", "locator")):
             errors.append("invalid structure")
             continue
         sid, path = item["id"], item["path"]

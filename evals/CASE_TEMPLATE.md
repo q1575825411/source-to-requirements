@@ -1,44 +1,33 @@
-# Evaluation case: <case-id>
+# Review case: <case-id>
 
-> TEMPLATE ONLY. Replace all placeholders before running. Do not expose the oracle section to the agent.
+Template only. Replace placeholders before use.
 
-## Metadata
-- Case ID:
-- Purpose / risk:
-- Source location and pinned revision:
-- Build/product assumptions:
-- Agent input availability:
-- Mode: quick / standard / deep
-- Output language: zh-CN / en / bilingual
+## Inputs
+- Case ID / purpose:
+- Source location and immutable revision or snapshot identifier:
+- Relevant dirty changes, build/product assumptions:
+- Scope and exclusions:
+- Exact user prompt:
+- Mode / output language:
+- Agent-visible source and available tools:
 
-## Agent-visible task
-<Exact user prompt>
+## Optional regression notes (reviewer only)
+- Known defect to check:
+- Source evidence / expected observable behavior:
+- Applicability and limitations:
 
-## Agent-visible source fixture
-<Paths or self-contained fixture setup>
-
-## Evaluation oracle (evaluator-only)
-- Required observable behaviors:
-- Required conditions, failures, and branches:
-- Evidence anchors (file:symbol:line or revision):
-- Forbidden/unsupported conclusions:
-- Known unresolved edges:
-- Expected output sections (only when warranted):
-
-## Scoring (TODO: thresholds and weights)
-| Dimension | Evidence for score | Score |
-|---|---|---|
-| Behavioral correctness | | TBD |
-| Evidence validity | | TBD |
-| Branch/variant coverage | | TBD |
-| Unsupported claims | | TBD |
-| Scope adherence | | TBD |
-| Language consistency | | TBD |
+These notes are not an exhaustive answer or a required document structure.
 
 ## Run record
-- Skill commit:
-- Agent / model version:
+- Skill commit (or no-skill control):
+- Agent/model version and environment:
 - Date:
-- Output location:
-- Observed failures:
-- Reviewer:
+- Requirements output location:
+- Reviewer and review date:
+- Inspected source paths / variants:
+- Unreviewed or inaccessible paths:
+
+## Review results
+Use REVIEW.md. For each finding record dimension, severity, affected requirement or omitted behavior, observed problem, source or conformance evidence, consequence and suggested correction.
+Record unresolved verification questions separately. Record optional regression checks as satisfied, failed or not verified with evidence.
+For comparisons record resolved, persistent, introduced and unverified defects, with comparable review scope and limitations.

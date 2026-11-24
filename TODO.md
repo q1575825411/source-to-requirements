@@ -1,31 +1,33 @@
-# Roadmap: reproducible evaluations and reference examples
+# Roadmap: source-grounded quality review and reference examples
 
-This is a planning scaffold only. No evaluation results, passing scores, or verified reference outputs are claimed.
+Status: review design established; execution and verified examples remain pending. Checked items denote delivered artifacts, not measured skill performance.
 
-## P0 — Evaluation fixtures and rubric
-- [ ] Define a deterministic fixture format: case ID, source snapshot/revision, prompt, mode, language, expected behaviors, evidence anchors, and known exclusions.
-- [ ] Add a small self-contained C/C++ fixture with success, failure, and boundary paths.
+## P0 — Review foundation
+- [x] Define case metadata and reproducible input format (evals/CASE_TEMPLATE.md); optional known-defect assertions replace a mandatory exhaustive oracle.
+- [x] Define independent accuracy and conformance review criteria, including evidence, material omissions, unsupported claims, scope and language (evals/REVIEW.md).
+- [x] Define run recording and comparative review protocol (evals/README.md).
+- [ ] Add a small self-contained C/C++ fixture with success, failure and boundary paths.
 - [ ] Add a Java/JNI/C++ cross-language fixture with a verifiable binding.
-- [ ] Add an Android Framework end-to-end fixture, pinning an accessible AOSP revision and product/build assumptions.
-- [ ] Add negative fixtures: missing source, misleading comments/dead code, and competing build variants.
-- [ ] Define rubric: behavioral correctness, evidence validity, branch coverage, unsupported claims, scope adherence, and language consistency.
-- [ ] Establish baseline runs for Codex CLI and GitHub Copilot (VS Code/CLI where available); record agent/model versions, run date, inputs, and outcomes.
-- [ ] Keep at least one held-out evaluation case unavailable to the agent during execution.
+- [ ] Add an Android Framework end-to-end fixture with accessible pinned AOSP revision and product/build assumptions.
+- [ ] Add negative fixtures: missing source, misleading comments/dead code and competing build variants.
+- [ ] Establish baseline runs for Codex CLI and GitHub Copilot (where available); record actual inputs, outputs, environment and reviewed findings.
+- [ ] Reserve at least one unseen case for generalization checks; keep reviewer-only regression notes separate from generation inputs.
 
 ## P0 — Complete reference examples
-- [ ] Publish one verified C/C++ single-module example (source + prompt + requirements + evidence).
-- [ ] Publish one verified Android Framework cross-module example (pinned source revision, gates, call chain, requirements).
-- [ ] Publish one evidence-insufficient example showing unknowns, scoped stop conditions, and no fabricated conclusions.
-- [ ] Review each example against the evaluation rubric before labeling it a reference.
-- [ ] Ensure examples are illustrative, not copied as answers into held-out evaluations.
+- [ ] Publish one independently reviewed C/C++ single-module example (source + prompt + requirements + evidence).
+- [ ] Publish one independently reviewed Android Framework cross-module example (pinned source, gates, call chain, requirements).
+- [ ] Publish one evidence-insufficient example showing unknowns, scoped stop conditions and no fabricated conclusions.
+- [ ] Review each example against the accuracy/conformance protocol before labeling it verified.
+- [ ] Keep examples illustrative and separate from unseen evaluation cases.
 
 ## P1 — Feedback loop
-- [ ] Record failures by category and map each to a specific instruction or reference-file change.
-- [ ] Rerun the fixed test set after changes; compare with baseline and track regressions.
-- [ ] Add lightweight structural validation/CI only after the fixture schema stabilizes.
+- [ ] Record evidence-backed defects and map actionable causes to instruction or reference-file changes.
+- [ ] Rerun comparable cases after changes; track resolved, persistent, introduced and unverified defects.
+- [ ] Consider lightweight structural validation/CI after review workflow stabilizes; no mandatory runtime dependency.
 
 ## Definition of done
-- Evaluation cases can be rerun from pinned inputs without relying on undocumented local state.
-- Every scored claim has a checkable expected behavior and evidence anchor.
+- Cases are reproducible from recorded inputs without undocumented local state.
+- Confirmed findings have checkable evidence and demonstrated consequences; unresolved questions are separate.
 - At least three complete examples have independently reviewed evidence.
 - No fixture/example is represented as validated until actually reviewed or executed.
+- No aggregate score or exhaustive coverage claim is required.

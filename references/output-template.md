@@ -1,6 +1,6 @@
 # Output routing and format
 
-Default to a single Markdown **reconstructed requirements specification** in conversation. Do not write files unless requested. The specification is the deliverable; source analysis, call chains and evidence classification substantiate it. A mode controls **investigation depth**, not a mandatory count of documents or sections.
+Default to a single Markdown **reconstructed requirements specification** in conversation. Do not write user-facing deliverable files unless requested; run-local investigation records follow their own persistence rules. The specification is the deliverable; source analysis, call chains and evidence classification substantiate it. A mode controls **investigation depth**, not a mandatory count of documents or sections.
 
 ## Template routing
 
@@ -34,7 +34,7 @@ Apply this check to optional views in every mode, not to the eligibility of mate
 1. Identify the facts, obligations, evidence, acceptance oracles, relationships and gaps carried by the candidate view. Counterfactually remove the view: would a reader lose material behavioral meaning, implementation or acceptance determinacy, evidence reviewability, or understanding of dependencies/state/failure relationships? If yes, retain that information in an authoritative location or a linked supporting view.
 2. If no material information is lost, retain a compact reference-based view only if it supports a concrete review task that would otherwise require reconstructing relationships across dispersed requirements (e.g. comparing permission gates, tracing failure propagation, or mapping tests to contracts). State its purpose through its heading or content; novelty alone is not required.
 3. Otherwise merge or omit the redundant view. Prefer references over repeated normative text. When uncertain whether information is material, preserve it compactly and qualify uncertainty rather than silently dropping it.
-4. Reconcile the final deliverable against the investigated inventory after consolidation: all material obligations, decisive conditions, acceptance criteria, evidence, relationships and known gaps must remain accessible through resolvable IDs or locations. Internal checks remain mandatory. Explicitly requested views remain in scope.
+4. Use the input-driven reconciliation in [evidence validation](evidence-validation.md) on the consolidated deliverable, rechecking affected facts after changes. All material obligations, decisive conditions, acceptance criteria, evidence, relationships and known gaps must remain accessible through resolvable IDs or locations. Explicitly requested views remain in scope.
 
 ## Deliverable priority
 1. **Requirements baseline**: feature/scenario-oriented requirements, observable outcomes, relevant failure/variant constraints, and acceptance conditions. This is the main body, not a function inventory.

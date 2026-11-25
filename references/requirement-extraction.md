@@ -12,6 +12,9 @@
 
 Convert to verifiable statements: `When [trigger], if [conditions], the system [observable behavior]; otherwise [fallback].`
 
+## Fact-driven organization and abstraction
+Use active ledger facts and source-linked outcome/lineage records as the input, by coherent behavior group. Organize related facts by observable contract before choosing FR/NFR or supporting context; core outcomes determine presentation order, not which material facts survive. For each group, express the shared rule and material variants, preserving the conditions, exact rules, results, failure scope, compatibility and evidence that distinguish them. Classify the resulting obligations and supporting facts only after their meaning is established. Merge wording or cross-reference a shared rule only if each input fact's material meaning remains recoverable from the resulting statements and linked constraints. Preserve material technical facts, conflicts and unknowns in their appropriate destinations even when they do not warrant an independent requirement. If a group cannot be expressed without loss, split it or use a linked constraint. This is the existing abstraction operation, not a new mapping artifact or second investigation.
+
 ## Requirements abstraction: contract versus mechanism
 - Write requirements from the perspective of the system's observable obligations: trigger, conditions, outcome, rejection/failure behavior and relevant constraints. Organize by feature and scenario, not by implementation file/function order.
 - Preserve an implementation-specific parameter, API, timing or method when it defines the tested contract, interoperability, compatibility, or an essential measurement protocol. Otherwise retain it in technical notes/evidence rather than making it a standalone requirement.
@@ -44,12 +47,12 @@ First extract candidate contracts without IDs. Classify an **FR** as an independ
 
 After final grouping and section ordering, assign sequential IDs to normative FRs and NFRs, then update all references, outcome summaries, interface links, scenarios and coverage tables. Do not number by discovery order. In a document with an early outcome overview, references to later FR IDs are fine, but the **normative FR table's first appearances** should be ordered consistently. Preserve pre-existing IDs only when updating an established externally referenced baseline, and state that exception.
 
-## Multi-level requirement reconstruction## Multi-level requirement reconstruction
+## Multi-level requirement reconstruction
 - **System level**: describe the end-to-end outcome and lifecycle without absorbing all independently observable component obligations.
 - **Component level**: preserve each in-scope independently exercisable component's significant input validation, operating modes, behavior/state, output and error/exit semantics. Consolidate related branches within that component, but do not discard its contract merely because an orchestrator invokes it.
 - **Interface level**: specify material cross-component contracts: invocation arguments, messages/handshakes, ordering/timeouts, output schema, exit/failure propagation, and compatibility conditions when supported. A call-chain narrative alone is not an interface contract.
 - Cross-reference shared requirements instead of duplicating full statements. Do not require a fixed number of component sections or separate documents; choose structure based on observable contract boundaries, not file layout.
-- Before delivery, map each material investigated behavior to a requirement, interface/technical constraint, explicit scope exclusion, or unresolved issue. A behavior supported by source but omitted from requirements must have an explicit reason (e.g. internal mechanism only).
+- Before delivery, apply the input-driven semantic reconciliation in [evidence validation](evidence-validation.md); retain material technical context even when it is not a normative obligation.
 
 ## Two lightweight precision gates
 - **Self-contained normative obligation**: Read each FR/NFR without its explanatory overview. Can a reviewer identify the decisive condition, rule, observable outcome and material failure behavior, using only that requirement plus explicitly linked *normative* constraints? If not, move the missing rule into the authoritative FR/NFR or linked normative constraint, then reduce the overview to a summary. Avoid duplicating a shared formula across multiple FRs.

@@ -27,6 +27,9 @@ Reverse-engineer a **usable, evidence-backed requirements baseline** from existi
 **Reference loading gate:** Use the complete injected SKILL.md when available. Load each required reference in full before its first dependent operation, not as a bulk preflight dump. Preparation and investigation setup need environment, boundary and structural guidance; load code-investigation before eligibility/discovery, behavior-ledger before structural source inspection or capture, applicable language/platform guidance before tracing, extraction before outcome reconstruction, evidence-validation before any evidence review (including during investigation), and output routing/templates before drafting. Keep file boundaries identifiable; use separate bounded reads or verified ranges when aggregate output may truncate. Check returned content for missing sections or truncation and recover missing ranges before relying on it. Do not assume a requested output limit overrides the host. Reuse complete loaded references; no fixed platform token limit or reduced investigation scope.
 **Working input gate:** Apply the same reliability principle to source, active ledger records and outcome/lineage inputs: verify that the material content needed for the current operation is readable and available, including evidence and confidence where applicable. Recover only missing, truncated or garbled portions using suitable bounded reads or encoding handling. If recovery is impossible, record the concrete limitation and affected scope; do not treat unreadable input as inspected or reconciled.
 
+
+**Iteration and termination:** Continue a local loop or return to a work goal only for a concrete unresolved in-scope issue with a feasible next investigation or repair action. Each iteration must address that issue: obtain or assess relevant evidence, correct a fact or expression, or establish a concrete limitation. Do not repeat an unchanged investigation, conversion or review action for the same issue with the same evidence and conditions; if an attempt yields no progress, try a materially different feasible approach only where it can resolve the issue. Reopen resolved work only when new evidence or changes affect it. If no feasible path remains, retain the specific unknown or limitation and proceed with established evidence; do not treat the issue as resolved. Once the existing completion conditions are met, exit the loop and advance or deliver. This rule does not permit skipping feasible in-scope investigation or mandatory checks, and does not impose a fixed iteration, token or tool-call budget.
+
 ## Preparation
 **Preflight**: Before source investigation, check target readability, Git availability, and Repo availability when relevant; identify Git/Repo/plain-file workspace and relevant project revisions/dirty paths using only targeted, read-only checks. See [environment preflight](references/environment-preflight.md). Missing Git/Repo must not block file-based analysis; never sync, install, or modify the workspace automatically.
 
@@ -68,7 +71,7 @@ Complete investigation before formal abstraction:
 - Ensure identifiable core outcome/lineage records are current, with unresolved fields explicit. Persist findings, then apply the structural and [behavior ledger](references/behavior-ledger.md) checks to current records. Repair accounting errors; if repairs reveal feasible unfinished investigation, resume affected investigation and outcome reconstruction. Recheck affected results after changes. Check actual checkpoint execution and disclose capture limitations. Mechanical closure and ledger validity are distinct from semantic completeness.
 
 ### Express
-Organize established behavior into verifiable requirements without losing material semantics. If evidence is insufficient, resume affected investigation and prepare the updated inputs before continuing.
+Organize established behavior into verifiable requirements without losing material semantics. If evidence is insufficient, resume affected investigation, repeat relevant completion checks and prepare updated inputs before continuing the unfinished Express work.
 
 #### Prepare conversion inputs
 
@@ -80,7 +83,7 @@ Follow the fact-driven local conversion and immediate semantic reconciliation me
 
 #### Expression completion
 
-Complete conversion and immediate reconciliation of all active behavior groups, integrate cross-group relationships and account for each material recorded rule in the deliverable or an explicit justified exclusion, conflict or unresolved issue. Use the existing extraction and evidence review methods; this is not another review pass.
+Complete conversion and immediate reconciliation of all active behavior groups, integrate cross-group relationships and account for each material recorded rule in the deliverable or an explicit justified exclusion, conflict or unresolved issue. If material inputs remain unrecoverable after feasible recovery, reconcile only reliable evidence and disclose the affected groups and incomplete conversion/review; permit partial delivery without claiming complete expression. Use the existing extraction and evidence review methods; this is not another review pass.
 
 **Classification and deduplication**: Apply the extraction guide's FR/NFR and normative-rule ownership rules; separate functional obligations, independently verifiable nonfunctional constraints and supporting mechanisms. Give each normative rule one authoritative home. Assign stable sequential FR/NFR IDs after final grouping and ordering; first appearances in normative tables follow document order, not discovery order (preserve established externally referenced IDs when updating a baseline).
 
@@ -89,7 +92,7 @@ Challenge established behavior against source and its expression against recorde
 
 #### Review understanding
 
-Use both directions of the existing [evidence review](references/evidence-validation.md): locate supporting source evidence for every assertion and actively challenge it with counterexamples, competing branches, gates, overrides and conflicting paths; also examine investigation scope and source evidence for material behavior absent from the established facts. Do not use the ledger as the boundary of possible findings. Reuse structural and contract inventories and outcome/lineage records to direct this review; revisit only insufficient or contradictory evidence and suspected omissions. Never invent file paths, line numbers, tests or historical intent.
+Use both directions of the existing [evidence review](references/evidence-validation.md): locate supporting source evidence for every assertion and actively challenge it with counterexamples, competing branches, gates, overrides and conflicting paths; also examine investigation scope and source evidence for material behavior absent from the established facts. Do not use the ledger as the boundary of possible findings. Reuse structural and contract inventories and outcome/lineage records to direct this review; revisit source only for insufficient or contradictory evidence, affected conclusions or evidence-based suspected omissions. Never invent file paths, line numbers, tests or historical intent.
 
 #### Review expression and integration
 

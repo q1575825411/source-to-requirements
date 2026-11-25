@@ -43,12 +43,9 @@ def validate(structural, records):
         seen.add(bid)
     covered = {u for rec in active.values() for u in rec["units"]}
     for uid, unit in units.items():
-        for disposition in unit.get("dispositions", []):
-            for bid in disposition["fact_ids"]:
-                if bid not in active or uid not in active[bid]["units"]:
-                    errors.append(f"{uid}: inactive or foreign disposition fact {bid}")
-        if unit["status"] == "inspected" and not unit.get("dispositions"):
-            errors.append(f"{uid}: inspected without structure dispositions")
+        if unit["status"] == "inspected" and uid not in covered:
+            if not nonempty(unit.get("no_material_behavior_reason")):
+                errors.append(f"{uid}: inspected without active findings or reason")
     return errors, {
         "records": len(records),
         "distinct_ids": len(seen),

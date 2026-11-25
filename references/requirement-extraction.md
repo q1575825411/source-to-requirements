@@ -28,22 +28,21 @@ Integrate the groups and reconcile cross-group relationships and changes. This i
 - A source-observed behavior is a candidate reconstructed requirement, not proof that stakeholders intended or approved it. When suspicious, state the observed contract separately from its defect hypothesis and desired change.
 - Distinguish **known behavior** from **unknown intent**: a verified fixed path or guard is not `UNK` merely because its rationale is unclear; put the rationale question in `UNK` and link the observed behavior.
 
-## Core outcome and formation-contract reconstruction
-Before consolidating a capability inventory into requirements, ask within the requested scope:
-1. What observable result, decision, state transition, or artifact is the system/feature principally producing? There may be multiple; for a narrow symbol or generic library, a primary outcome may be indeterminate.
-2. What is the semantic unit of that result, its inputs and conditions, and what precisely initiates and completes its formation? Identify the boundary of the operation/decision, not merely the presence of output fields.
-3. How is the result derived or classified, including relevant algorithms/formulas, timing/ordering, units, validity, errors, and distinction between attempted, produced, and accepted results **when supported by evidence**?
-4. Which observed capabilities directly produce the result, establish its conditions, coordinate repetition, or preserve/report it? Express those as supporting or constraining contracts rather than substituting them for the foundational contract.
-5. Can a reader understand how the key outcome arises without first reading orchestration, persistence, or implementation walkthroughs? If not, revise the requirements order or fill a substantiated contract gap.
+## Core outcomes and formation-contract record
+During Understand, before grouping or assigning functional requirements, identify the primary observable result(s), decision(s), state change(s) or artifact(s) within the requested scope. Use the required source-linked working record to investigate how each identifiable core outcome is formed:
+- Observable meaning and semantic unit of one result.
+- Inputs, conditions and actor.
+- Exact initiation/completion or decision boundary, not merely output fields.
+- Derivation, transformation or decision logic, including relevant algorithms, formulas, units, timing and ordering when evidenced.
+- Attempted versus produced/emitted versus accepted/successful or invalid result; validity and error behavior.
+- Source evidence or a specific unresolved question for each field.
+- Capabilities that produce, condition, coordinate or preserve/report the outcome.
 
-Treat this as **goal-oriented reverse inference from implemented behavior**, not proof of original business intent. Do not assert an original stakeholder objective, SLA, success threshold, quality guarantee, or result-validity rule merely because code has a field, constant, or comment. Mark unsupported semantics unresolved. Preserve multiple equally important outcomes when appropriate; do not force a single central requirement for utility libraries, narrowly scoped symbols, or systems where the evidence does not identify one. The foundational contract can be a small group of existing FRs, not a mandatory new ID series or a boilerplate section.
+Update affected records as evidence changes. Do not substitute a log schema, function name, process topology or output count for the formation boundary, derivation or validity semantics. This is goal-oriented reverse inference from implemented behavior, not proof of original business intent. Do not infer stakeholder objectives, SLAs, success thresholds, quality guarantees or validity rules merely from fields, constants or comments. Multiple equally important outcomes are legitimate; for utility libraries, narrow symbols or other scopes with no supported primary outcome, state that finding briefly and continue scoped reconstruction without forcing a single goal.
 
-## Outcome-formation working record (required when identifiable)
-Build and refine this during Understand, **before** assigning or grouping functional requirements; update affected records when later evidence changes them. For each primary outcome, capture: (a) observable meaning and unit, (b) inputs, conditions and actor, (c) exact initiation/completion or decision boundary, (d) derivation/transform/decision logic including units and formulas if evidenced, (e) attempted versus emitted versus accepted/successful result and error behavior, (f) source evidence or unresolved question for each field, (g) producing, conditioning, coordinating and preserving capabilities. Do not substitute a log schema, function name, process topology, or output count for (c)–(e).
+During Express, convert the record into one or more independently verifiable foundational FRs before dependent orchestration and lifecycle requirements. Link supporting capabilities without replacing their independent contracts. The reader must be able to understand formation and interpretation from the foundational FRs and their normative constraints alone. If not, revise the requirements order or fill an evidenced contract gap; retain specific unknowns rather than inventing formulas or validity rules. No new ID series or boilerplate section is required.
 
-Convert the record into one or more **independently verifiable foundational FRs**, and put these before dependent orchestration and lifecycle FRs in the final baseline. Other components may refer to these FRs while retaining their own contracts. If a field is not provable, say so specifically rather than fabricating a formula or validity rule. For multi-outcome systems, repeat only for material outcomes; for a utility or narrow symbol with no supported primary outcome, document that finding briefly and use normal scoped reconstruction.
-
-**Failure example (generic):** a report lists a computed metric and its output fields, then exhaustively documents scheduling and archiving, but never defines the metric's measurement/decision boundary or calculation. **Passing example (generic):** the report first defines what one result represents, when the operation begins and ends, how it is computed/classified, and how failure differs from a valid result, then traces orchestration and storage to that contract. These are structural tests, not domain-specific requirements.
+**Failure example (generic):** listing a computed metric, output fields, scheduling and archiving without its measurement/decision boundary or calculation. **Passing example:** defining one result, its start/end, computation/classification and failure versus valid-result meaning, then linking orchestration and storage.
 
 ## Related outcomes and data lineage (conditional)
 When several material outcomes are connected, construct a compact **source-linked dependency map before drafting**: producer outcome and input population → transformation/filter/aggregation/decision gate → consumer outcome and population. Record whether each is raw, filtered, derived, accepted, persisted, or presentation-only **only if code establishes that distinction**. Check whether filtering mutates the source record or creates a separate view, whether validation and performance judgments use different populations, and which downstream outputs/caches are invalidated by a rule change. Preserve branching, fan-in, fan-out, and independent outcomes; do not force a single pipeline or make a diagram mandatory. Use `unknown` for unsupported edges. Include a small lineage table or prose only when it materially improves the final requirements.
@@ -60,9 +59,8 @@ After final grouping and section ordering, assign sequential IDs to normative FR
 - Cross-reference shared requirements instead of duplicating full statements. Do not require a fixed number of component sections or separate documents; choose structure based on observable contract boundaries, not file layout.
 - During local conversion and integration, apply the input-driven semantic reconciliation in [evidence validation](evidence-validation.md); retain material technical context even when it is not a normative obligation.
 
-## Two lightweight precision gates
-- **Self-contained normative obligation**: Read each FR/NFR without its explanatory overview. Can a reviewer identify the decisive condition, rule, observable outcome and material failure behavior, using only that requirement plus explicitly linked *normative* constraints? If not, move the missing rule into the authoritative FR/NFR or linked normative constraint, then reduce the overview to a summary. Avoid duplicating a shared formula across multiple FRs.
-- **Failure propagation scope**: For each materially different error path, trace where it is caught or propagated and identify its observable blast radius: individual input/event, current entity/batch, or whole invocation (including exit status when evidenced). Distinguish retained invalid records, skipped items, retries and fatal exceptions. Do not invent a recovery or exit code; only distinguish levels actually supported by the inspected source.
+## Contract precision during conversion
+Apply the [normative self-containment and failure-scope checks](evidence-validation.md) during local conversion, not just final review. Keep decisive shared rules in the authoritative FR/NFR or linked normative constraint, and keep the overview explanatory. Preserve distinct catch/propagation boundaries, retained invalid records, skipped items, retries, fatal exceptions and evidenced exit status; do not invent recovery or exit codes.
 
 ## Requirement quality gate
 During conversion and integration, check each material requirement using the existing evidence review; reuse completed checks unless affected by changes:
@@ -83,9 +81,8 @@ If a criterion cannot be established, narrow the statement or record the gap ins
 - Record internal algorithms, data structures, resource handling and optimization choices as implementation evidence unless they impose an observable contract.
 - Distinguish deliberate compatibility behavior from inferred intent; a suspicious behavior is a defect hypothesis, not automatically a requirement.
 
-## Classification and identifiers
-- Use `FR` for observable functional contracts, including success, denial, error/fallback, and compatibility behavior; group related branches under one ID when they form one independently testable contract.
-- Use `NFR` only for evidence-backed nonfunctional constraints and `UNK` for unresolved questions. Do not create a default `BR` series from conditionals or special cases.
+## Additional classification rules
+- Use `UNK` for unresolved questions. Do not create a default `BR` series from conditionals or special cases.
 - An optional behavior-kind label may help readers distinguish normal, rejection, error/fallback, or compatibility behavior. It does not determine IDs or require separate sections.
 - Keep inferred intent, defect hypotheses, proposed requirements, and implementation decisions out of the implemented-behavior table. Record them separately only when material and supported by the investigation.
 

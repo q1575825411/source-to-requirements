@@ -13,7 +13,13 @@
 Convert to verifiable statements: `When [trigger], if [conditions], the system [observable behavior]; otherwise [fallback].`
 
 ## Fact-driven organization and abstraction
-Use active ledger facts and source-linked outcome/lineage records as the input, by coherent behavior group. Organize related facts by observable contract before choosing FR/NFR or supporting context; core outcomes determine presentation order, not which material facts survive. For each group, express the shared rule and material variants, preserving the conditions, exact rules, results, failure scope, compatibility and evidence that distinguish them. Classify the resulting obligations and supporting facts only after their meaning is established. Merge wording or cross-reference a shared rule only if each input fact's material meaning remains recoverable from the resulting statements and linked constraints. Preserve material technical facts, conflicts and unknowns in their appropriate destinations even when they do not warrant an independent requirement. If a group cannot be expressed without loss, split it or use a linked constraint. This is the existing abstraction operation, not a new mapping artifact or second investigation.
+Use the explicitly reloaded active ledger facts and source-linked outcome/lineage records as input. Work through coherent behavior groups rather than summarizing the entire investigation at once. For each group:
+
+1. Identify the distinct material rules and variants in the input; organize them by observable contract before choosing FR/NFR or supporting context. Core outcomes determine presentation order, not which material facts survive.
+2. Express shared rules and material variants, preserving exact conditions, results, failure scope, compatibility and evidence. Classify obligations and supporting facts only after their meaning is established; retain technical facts, conflicts and unknowns in appropriate destinations.
+3. Compare the resulting draft statements and linked constraints directly with the group's input semantics using [evidence validation](evidence-validation.md). Repair missing or weakened rules before moving to an unrelated group; split or cross-reference if needed to preserve meaning. A topic match is not sufficient.
+
+Integrate the groups and reconcile cross-group relationships and changes. This is the existing abstraction operation, not a new mapping artifact, mandatory per-fact write or second source investigation. Its coverage target is recorded material behavior, not all possible source behavior.
 
 ## Requirements abstraction: contract versus mechanism
 - Write requirements from the perspective of the system's observable obligations: trigger, conditions, outcome, rejection/failure behavior and relevant constraints. Organize by feature and scenario, not by implementation file/function order.

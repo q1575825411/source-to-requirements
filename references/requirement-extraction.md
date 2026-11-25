@@ -13,7 +13,7 @@
 Convert to verifiable statements: `When [trigger], if [conditions], the system [observable behavior]; otherwise [fallback].`
 
 ## Fact-driven organization and abstraction
-Use the explicitly reloaded active ledger facts and source-linked outcome/lineage records as input. Work through coherent behavior groups rather than summarizing the entire investigation at once. For each group:
+Use the active ledger facts and source-linked outcome/lineage records prepared by the procedure (reloaded or disclosed in-context fallback) as input. Work through coherent behavior groups rather than summarizing the entire investigation at once. For each group:
 
 1. Identify the distinct material rules and variants in the input; organize them by observable contract before choosing FR/NFR or supporting context. Core outcomes determine presentation order, not which material facts survive.
 2. Express shared rules and material variants, preserving exact conditions, results, failure scope, compatibility and evidence. Classify obligations and supporting facts only after their meaning is established; retain technical facts, conflicts and unknowns in appropriate destinations.
@@ -39,7 +39,7 @@ Before consolidating a capability inventory into requirements, ask within the re
 Treat this as **goal-oriented reverse inference from implemented behavior**, not proof of original business intent. Do not assert an original stakeholder objective, SLA, success threshold, quality guarantee, or result-validity rule merely because code has a field, constant, or comment. Mark unsupported semantics unresolved. Preserve multiple equally important outcomes when appropriate; do not force a single central requirement for utility libraries, narrowly scoped symbols, or systems where the evidence does not identify one. The foundational contract can be a small group of existing FRs, not a mandatory new ID series or a boilerplate section.
 
 ## Outcome-formation working record (required when identifiable)
-Build this **before** assigning or grouping functional requirements. For each primary outcome, capture: (a) observable meaning and unit, (b) inputs, conditions and actor, (c) exact initiation/completion or decision boundary, (d) derivation/transform/decision logic including units and formulas if evidenced, (e) attempted versus emitted versus accepted/successful result and error behavior, (f) source evidence or unresolved question for each field, (g) producing, conditioning, coordinating and preserving capabilities. Do not substitute a log schema, function name, process topology, or output count for (c)–(e).
+Build and refine this during investigation, **before** assigning or grouping functional requirements; update affected records when later evidence changes them. For each primary outcome, capture: (a) observable meaning and unit, (b) inputs, conditions and actor, (c) exact initiation/completion or decision boundary, (d) derivation/transform/decision logic including units and formulas if evidenced, (e) attempted versus emitted versus accepted/successful result and error behavior, (f) source evidence or unresolved question for each field, (g) producing, conditioning, coordinating and preserving capabilities. Do not substitute a log schema, function name, process topology, or output count for (c)–(e).
 
 Convert the record into one or more **independently verifiable foundational FRs**, and put these before dependent orchestration and lifecycle FRs in the final baseline. Other components may refer to these FRs while retaining their own contracts. If a field is not provable, say so specifically rather than fabricating a formula or validity rule. For multi-outcome systems, repeat only for material outcomes; for a utility or narrow symbol with no supported primary outcome, document that finding briefly and use normal scoped reconstruction.
 
@@ -58,14 +58,14 @@ After final grouping and section ordering, assign sequential IDs to normative FR
 - **Component level**: preserve each in-scope independently exercisable component's significant input validation, operating modes, behavior/state, output and error/exit semantics. Consolidate related branches within that component, but do not discard its contract merely because an orchestrator invokes it.
 - **Interface level**: specify material cross-component contracts: invocation arguments, messages/handshakes, ordering/timeouts, output schema, exit/failure propagation, and compatibility conditions when supported. A call-chain narrative alone is not an interface contract.
 - Cross-reference shared requirements instead of duplicating full statements. Do not require a fixed number of component sections or separate documents; choose structure based on observable contract boundaries, not file layout.
-- Before delivery, apply the input-driven semantic reconciliation in [evidence validation](evidence-validation.md); retain material technical context even when it is not a normative obligation.
+- During local conversion and integration, apply the input-driven semantic reconciliation in [evidence validation](evidence-validation.md); retain material technical context even when it is not a normative obligation.
 
 ## Two lightweight precision gates
 - **Self-contained normative obligation**: Read each FR/NFR without its explanatory overview. Can a reviewer identify the decisive condition, rule, observable outcome and material failure behavior, using only that requirement plus explicitly linked *normative* constraints? If not, move the missing rule into the authoritative FR/NFR or linked normative constraint, then reduce the overview to a summary. Avoid duplicating a shared formula across multiple FRs.
 - **Failure propagation scope**: For each materially different error path, trace where it is caught or propagated and identify its observable blast radius: individual input/event, current entity/batch, or whole invocation (including exit status when evidenced). Distinguish retained invalid records, skipped items, retries and fatal exceptions. Do not invent a recovery or exit code; only distinguish levels actually supported by the inspected source.
 
 ## Requirement quality gate
-Before delivery, check each material requirement:
+During conversion and integration, check each material requirement using the existing evidence review; reuse completed checks unless affected by changes:
 1. **Core meaning**: where identifiable, the primary outcome and its formation/validity semantics are independently understandable before supporting orchestration; otherwise the uncertainty is explicit.
 2. **Clarity**: actor, trigger, preconditions, and outcome are unambiguous.
 3. **Verifiability**: an observer or test can determine pass/fail; add acceptance conditions or a linked proposed scenario where useful.

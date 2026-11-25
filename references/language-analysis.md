@@ -1,6 +1,6 @@
 # Language-aware investigation
 
-Read only the sections for languages and boundaries actually found in the target module. Never assume a language boundary exists from file extensions alone. Trace behavior rather than translating syntax into requirements.
+Load this reference in full when needed, following the reference loading gate; apply only the sections for languages and boundaries actually found in the target module. Never assume a language boundary exists from file extensions alone. Trace behavior rather than translating syntax into requirements.
 
 ## C
 - Identify exported headers and functions, compilation units, macros, `#if` guards and build definitions.

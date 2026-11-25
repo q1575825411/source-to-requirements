@@ -35,7 +35,7 @@ Record only what can be verified:
 5. If the module boundary is unclear, propose a provisional scope and mark it as provisional.
 
 ## Investigation budget and stopping conditions
-Start with entry points and observable outputs, then follow only paths relevant to candidate behaviors. Stop a branch when the requested observable effect and important guards are established, when the next step is unrelated to the requested scope, or when evidence is unavailable. Do not stop at a module boundary if it hides a feature outcome. Use the investigation completion and transition conditions in SKILL.md for overall stopping; a documented gap alone does not justify stopping feasible in-scope investigation. Never equate a bounded search with exhaustive coverage.
+Start with entry points and observable outputs, then follow only paths relevant to candidate behaviors. Stop a branch when the requested observable effect and important guards are established, when the next step is unrelated to the requested scope, or when evidence is unavailable. Do not stop at a module boundary if it hides a feature outcome. Use the Understand completion conditions in SKILL.md for overall stopping; a documented gap alone does not justify stopping feasible in-scope investigation. Never equate a bounded search with exhaustive coverage.
 
 ## Compact profile
 | Item | Finding | Evidence / uncertainty |
